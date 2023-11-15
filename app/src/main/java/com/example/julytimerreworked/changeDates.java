@@ -1,10 +1,12 @@
 package com.example.julytimerreworked;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,9 +33,11 @@ public class changeDates extends Fragment {
         //TODO: Implement changing Dates?
 
         Button btBack = view.findViewById(R.id.changeDatesBackButton);
-        btBack.setOnClickListener((View) -> {
-            requireActivity().onBackPressed();
-        });
+        btBack.setOnClickListener((View) -> requireActivity().onBackPressed());
+
+        ImageView background = view.findViewById(R.id.changeDatesBackground);
+        background.setBackgroundColor(Color.RED);
+        background.invalidate();
 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
