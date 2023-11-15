@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FirstFragment">
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.example.julytimerreworked.FirstFragment"
+        android:label="@string/settings_main_label"
+        tools:layout="@layout/fragment_first">
+        <action
+            android:id="@+id/action_FirstFragment_to_customizeShow"
+            app:destination="@id/customizeShow" />
+        <action
+            android:id="@+id/action_FirstFragment_to_changeDates"
+            app:destination="@id/changeDates" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changeDates"
+        android:name="com.example.julytimerreworked.changeDates"
+        android:label="@string/changeDates"
+        tools:layout="@layout/dates_change" >
+        <action
+            android:id="@+id/action_changeDates_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customizeShow"
+        android:name="com.example.julytimerreworked.customizeShow"
+        android:label="@string/timeShow"
+        tools:layout="@layout/show_customize">
+        <action
+            android:id="@+id/action_customizeShow_to_FirstFragment"
+            app:destination="@id/FirstFragment"/>
+    </fragment>
+</navigation>

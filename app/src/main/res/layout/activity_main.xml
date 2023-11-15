@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/mainLayout"
+    android:layout_height="match_parent">
+
+    <!-- Hintergrundbild -->
+    <ImageView
+        android:id="@+id/imBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@color/design_default_color_secondary" />
+    <!-- android:src mit Hintergrundbild austauschen -->
+
+    <!-- Knopf oben rechts -->
+    <Button
+        android:id="@+id/BtSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="#00FFFFFF"
+        android:text=""
+        app:icon="@android:drawable/ic_menu_manage"
+        app:iconTint="#009688" />
+
+    <!-- Abschnitt 1 in der Mitte oben -->
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="60dp"
+        android:paddingBottom="7dp"
+        android:paddingTop="7dp"
+        android:orientation="vertical">
+
+        <!-- Zwei Labels untereinander -->
+        <TextView
+            android:id="@+id/lb3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Label 3" />
+
+        <TextView
+            android:id="@+id/lb4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Label 4"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    </LinearLayout>
+
+    <!-- Abschnitt 2 in der Mitte -->
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout1"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:paddingBottom="7dp"
+        android:paddingTop="7dp"
+        android:orientation="vertical">
+
+        <!-- Zwei Labels untereinander -->
+        <TextView
+            android:id="@+id/lb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Label 1" />
+
+        <TextView
+            android:id="@+id/lb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Label 2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    </LinearLayout>
+
+    <!-- Abschnitt 3 in der Mitte unten -->
+    <LinearLayout
+        android:id="@+id/layout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:paddingBottom="7dp"
+        android:paddingTop="7dp"
+        android:layout_marginStart="60dp"
+        android:orientation="vertical">
+
+        <!-- Zwei Labels untereinander -->
+        <TextView
+            android:id="@+id/lb5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/percentage_done" />
+
+        <TextView
+            android:id="@+id/lb6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Label 6"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    </LinearLayout>
+
+</RelativeLayout>

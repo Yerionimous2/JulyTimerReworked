@@ -1,0 +1,18 @@
+Color schemes:
+ [0] = Button Color
+ [1] = Text Color
+ [2] = Background Color
+
+Show:
+ [0] = seconds
+ [1] = minutes
+ [2] = hours
+ [3] = days
+
+darkMode:
+ [0] = darkmode Start time
+ [1] = darkmode End time
+ [2] = darkmode mode:
+    0 => automatic
+    1 => bright
+    2 => dark

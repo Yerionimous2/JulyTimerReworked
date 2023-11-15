@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">JulyTimer</string>
+    <string name="time_elapsed">, seit du mich gesehen hast:</string>
+    <string name="time_till_seen">, bis du mich wiedersiehst:</string>
+    <string name="percentage_done">Prozent schon geschafft:</string>
+    <string name="time">Zeit</string>
+    <string name="seconds">Sekunden</string>
+    <string name="minutes">Minuten</string>
+    <string name="hours">Stunden</string>
+    <string name="days">Tage</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Strings used for the main Settings Page -->
+    <string name="back">zurück</string>
+    <string name="timeShow">Zeitanzeige Konfigurieren</string>
+    <string name="changeDates">Daten ändern</string>
+    <string name="customizeDarkmode">Farbmodi Personalisieren</string>
+    <string name="changeBackground">Hintergrundbild ändern</string>
+    <string name="showMilestones">Meilensteine anzeigen</string>
+    <string name="reset">zurücksetzen</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="settings_main_label">Einstellungen</string>
+    <string name="changeDatesStartDateText">Startdatum:</string>
+    <string name="changeDatesEndDateText">Enddatum:</string>
+</resources>
