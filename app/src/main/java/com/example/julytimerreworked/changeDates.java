@@ -24,9 +24,11 @@ public class changeDates extends Fragment {
 
         Button btPickStartDate = view.findViewById(R.id.changeDatesStartDateButton);
         btPickStartDate.setText(StringCompiler.getReadableDateString(save.getStartTime()));
+        //TODO: Implement changing Dates?
 
         Button btPickEndDate = view.findViewById(R.id.changeDatesEndDateButton);
         btPickEndDate.setText(StringCompiler.getReadableDateString(save.getEndTime()));
+        //TODO: Implement changing Dates?
 
         Button btBack = view.findViewById(R.id.changeDatesBackButton);
         btBack.setOnClickListener((View) -> {
