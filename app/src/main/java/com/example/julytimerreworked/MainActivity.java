@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         save = saveExec.load(this);
+        System.out.println(save);
         initialiseTextViewTexts();
         updateTextViewTexts();
         changeColors();

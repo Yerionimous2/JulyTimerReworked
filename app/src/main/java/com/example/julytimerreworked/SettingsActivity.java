@@ -43,11 +43,6 @@ public class SettingsActivity extends AppCompatActivity {
         customizeFragment = (customizeShow) getSupportFragmentManager().findFragmentById(R.id.customizeShow);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        Button btBack = findViewById(R.id.mainSettingsBack);
-        btBack.setOnClickListener((View) -> {
-            onBackPressed();
-        });
     }
 
     @Override

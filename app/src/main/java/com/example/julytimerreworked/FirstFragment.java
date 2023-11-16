@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -95,11 +96,21 @@ public class FirstFragment extends Fragment {
         Button btBack = view.findViewById(R.id.mainSettingsBack);
         Button btChangeDates = view.findViewById(R.id.mainSettingsChangeDates);
         Button btPickBackgroundImage = view.findViewById(R.id.mainSettingsChangeBackground);
+        Button btReset = view.findViewById(R.id.mainSettingsReset);
 
         btCustomizeShowTime.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_customizeShow));
         btChangeDates.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_changeDates));
         btBack.setOnClickListener((View) -> requireActivity().onBackPressed());
-        
+
+        btReset.setOnClickListener((View) -> {
+            JulyTimersave save = saveExec.reset(view.getContext());
+            saveExec.save(save, view.getContext());
+            save = saveExec.load(view.getContext());
+            changeColors(save);
+            ImageView background = view.findViewById(R.id.mainSettingsBackground);
+            background.setImageBitmap(null);
+        });
+
         btPickBackgroundImage.setOnClickListener(view -> {
             Intent i = new Intent();
             i.setType("image/*");

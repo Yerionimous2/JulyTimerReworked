@@ -45,6 +45,8 @@ public class saveExec {
                 byteArrayString = Base64.getEncoder().encodeToString(imageInByte);
             }
             editor.putString("BackgroundImage", byteArrayString);
+        } else {
+            editor.putString("BackgroundImage", "kein BG gesetzt.");
         }
 
         editor.apply();
@@ -88,11 +90,44 @@ public class saveExec {
         return new JulyTimersave(startTime, endTime, brightColorScheme, darkColorScheme, show, BackgroundImageBitmap, darkMode);
     }
 
+    public static JulyTimersave reset(Context context) {
+        String startTime = "2023-01-01 05:10:00.000";
+        String endTime = "2024-01-01 05:10:00.000";
+
+        String[] brightColorScheme = new String[3];
+        brightColorScheme[0] = "#B7C8EA";
+        brightColorScheme[1] = "#3A5A9B";
+        brightColorScheme[2] = "#7CA3F1";
+
+        String[] darkColorScheme = new String[3];
+        darkColorScheme[0] = "#464646";
+        darkColorScheme[1] = "#C5C5C5";
+        darkColorScheme[2] = "#555555";
+
+        boolean[] show = new boolean[4];
+        show[0] = true;
+        show[1] = true;
+        show[2] = true;
+        show[3] = true;
+
+        Integer[] darkMode = new Integer[3];
+        darkMode[0] = 19;
+        darkMode[1] = 7;
+        darkMode[2] = 0;
+
+        JulyTimersave save = new JulyTimersave(startTime, endTime, brightColorScheme, darkColorScheme, show, null, darkMode);
+        //save(save, context);
+        return save;
+    }
+
     private static byte[] loadByteArray(String name, Context context) {
         SharedPreferences sharedPref;
         sharedPref = context.getSharedPreferences("JulyTimer", Context.MODE_PRIVATE);
         byte[] result = null;
         String string = sharedPref.getString(name, null);
+        if(string.equals("kein BG gesetzt.")) {
+            string = null;
+        }
         if (string != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 result = Base64.getDecoder().decode(string);
