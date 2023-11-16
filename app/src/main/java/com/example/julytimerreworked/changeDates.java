@@ -38,6 +38,7 @@ public class changeDates extends Fragment {
         setButtonTexts(save);
         setButtonListeners(save);
         changeColors(save);
+        setBackgroundImage(save);
         return view;
     }
 
@@ -160,7 +161,7 @@ public class changeDates extends Fragment {
     private void setBackgroundImage(JulyTimersave save) {
         ImageView background = view.findViewById(R.id.changeDatesBackground);
         background.setAlpha((float) 0.6);
-        if(save.getBackgroundImage() != null) background.setImageBitmap(save.getBackgroundImage());
+        background.setImageBitmap(save.getBackgroundImage());
     }
 
 }

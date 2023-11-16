@@ -92,12 +92,14 @@ public class FirstFragment extends Fragment {
 
     private void setButtonListeners() {
         Button btCustomizeShowTime = view.findViewById(R.id.mainSettingsTimeShow);
-        btCustomizeShowTime.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_customizeShow));
-
+        Button btBack = view.findViewById(R.id.mainSettingsBack);
         Button btChangeDates = view.findViewById(R.id.mainSettingsChangeDates);
-        btChangeDates.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_changeDates));
-
         Button btPickBackgroundImage = view.findViewById(R.id.mainSettingsChangeBackground);
+
+        btCustomizeShowTime.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_customizeShow));
+        btChangeDates.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_changeDates));
+        btBack.setOnClickListener((View) -> requireActivity().onBackPressed());
+        
         btPickBackgroundImage.setOnClickListener(view -> {
             Intent i = new Intent();
             i.setType("image/*");
