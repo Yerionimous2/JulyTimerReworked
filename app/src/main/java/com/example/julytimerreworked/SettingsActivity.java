@@ -1,5 +1,9 @@
 package com.example.julytimerreworked;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -9,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.navigation.NavController;
@@ -58,6 +63,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveExec.save(save, this);
         super.onBackPressed();
     }
+
 
     private void updateSave() {
         boolean[] show;

@@ -1,6 +1,12 @@
 package com.example.julytimerreworked;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,7 +96,43 @@ public class FirstFragment extends Fragment {
 
         Button btChangeDates = view.findViewById(R.id.mainSettingsChangeDates);
         btChangeDates.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_changeDates));
+
+        Button btPickBackgroundImage = view.findViewById(R.id.mainSettingsChangeBackground);
+        btPickBackgroundImage.setOnClickListener(view -> {
+            Intent i = new Intent();
+            i.setType("image/*");
+            i.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(i, "getString(R.string.pick_Image)"), 1);
+        });
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        JulyTimersave save = saveExec.load(view.getContext());
+
+        if (resultCode == RESULT_OK) {
+
+            // compare the resultCode with the
+            // SELECT_PICTURE constant
+            if (requestCode == 1) {
+                // Get the url of the image from data
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                    // update the preview image in the layout
+                    ImageView backgroundImage = view.findViewById(R.id.mainSettingsBackground);
+                    backgroundImage.setImageURI(selectedImageUri);
+                    backgroundImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    BitmapDrawable BitmapBackground = (BitmapDrawable) backgroundImage.getDrawable();
+                    Bitmap bitmap = BitmapBackground.getBitmap();
+                    save.setBackgroundImage(bitmap);
+                    saveExec.save(save, view.getContext());
+                }
+            }
+        }
+    }
+
+
 
     private void setBackgroundImage(JulyTimersave save) {
         ImageView background = view.findViewById(R.id.mainSettingsBackground);

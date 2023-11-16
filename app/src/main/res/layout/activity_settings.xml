@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/SettingsBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

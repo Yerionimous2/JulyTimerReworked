@@ -110,8 +110,11 @@ public class MainActivity extends AppCompatActivity {
 
         //Hintergrund
         ImageView background = findViewById(R.id.imBackground);
-        background.setBackgroundColor(backgroundColor);
         background.setImageBitmap(save.getBackgroundImage());
+        background.setAlpha((float) 0.6);
+
+        View layout = findViewById(R.id.mainLayout);
+        layout.setBackgroundColor(backgroundColor);
     }
 
     public void initialiseTextViewTexts() {
