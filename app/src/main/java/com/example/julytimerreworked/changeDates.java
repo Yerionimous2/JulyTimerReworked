@@ -1,5 +1,8 @@
 package com.example.julytimerreworked;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +20,11 @@ import java.util.Objects;
 
 public class changeDates extends Fragment {
     View view;
+    DatePickerDialog startDatePicker;
+    TimePickerDialog startTimePicker;
+    DatePickerDialog endDatePicker;
+    TimePickerDialog endTimePicker;
+
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
@@ -25,11 +33,51 @@ public class changeDates extends Fragment {
         view = inflater.inflate(R.layout.dates_change, container, false);
         JulyTimersave save = saveExec.load(view.getContext());
         removeBackArrow();
+        createDateTimePickers(save);
         setBackgroundImage(save);
         setButtonTexts(save);
         setButtonListeners(save);
         changeColors(save);
         return view;
+    }
+
+    private void createDateTimePickers(JulyTimersave save) {
+        Context context = view.getContext();
+        Button btPickStartDate = view.findViewById(R.id.changeDatesStartDateButton);
+        Button btPickEndDate = view.findViewById(R.id.changeDatesEndDateButton);
+        int[] startDateIntArray = StringCompiler.parseDateString(save.getStartTime());
+        int[] resultStartDateIntArray = new int[5];
+        int[] endDateIntArray = StringCompiler.parseDateString(save.getEndTime());
+        int[] resultEndDateIntArray = new int[5];
+
+        startDatePicker = new DatePickerDialog(context,
+                (view, year, monthOfYear, dayOfMonth) -> {
+                    resultStartDateIntArray[0] = year;
+                    resultStartDateIntArray[1] = monthOfYear + 1;
+                    resultStartDateIntArray[2] = dayOfMonth;
+                }, startDateIntArray[0], startDateIntArray[1] - 1, startDateIntArray[2]);
+        startTimePicker = new TimePickerDialog(context,
+                (view, hourOfDay, minute) -> {
+
+                    resultStartDateIntArray[3] = hourOfDay;
+                    resultStartDateIntArray[4] = minute;
+                    btPickStartDate.setText(StringCompiler.getReadableDateString(resultStartDateIntArray));
+                    //TODO: Validate the Result and save it
+                }, startDateIntArray[3], startDateIntArray[4], true);
+        endDatePicker = new DatePickerDialog(context,
+                (view, year, monthOfYear, dayOfMonth) -> {
+                    resultEndDateIntArray[0] = year;
+                    resultEndDateIntArray[1] = monthOfYear + 1;
+                    resultEndDateIntArray[2] = dayOfMonth;
+                }, endDateIntArray[0], endDateIntArray[1] - 1, endDateIntArray[2]);
+        endTimePicker = new TimePickerDialog(context,
+                (view, hourOfDay, minute) -> {
+
+                    resultEndDateIntArray[3] = hourOfDay;
+                    resultEndDateIntArray[4] = minute;
+                    btPickEndDate.setText(StringCompiler.getReadableDateString(resultEndDateIntArray));
+                    //TODO: Validate the Result and save it
+                }, endDateIntArray[3], endDateIntArray[4], true);
     }
 
     private void changeColors(JulyTimersave save) {
@@ -82,7 +130,15 @@ public class changeDates extends Fragment {
         Button btPickEndDate = view.findViewById(R.id.changeDatesEndDateButton);
         Button btBack = view.findViewById(R.id.changeDatesBackButton);
 
-        //TODO: Implement changing Dates
+        btPickStartDate.setOnClickListener((View) -> {
+            startTimePicker.show();
+            startDatePicker.show();
+        });
+
+        btPickEndDate.setOnClickListener((View) -> {
+            endTimePicker.show();
+            endDatePicker.show();
+        });
         btBack.setOnClickListener((View) -> requireActivity().onBackPressed());
     }
 

@@ -101,9 +101,12 @@ public class StringCompiler {
     }
 
     public static String getReadableDateString(String date) {
-        String result = "";
         int[] dateInt = parseDateString(date);
-        result += dateInt[2] + " ";
+        return getReadableDateString(dateInt);
+    }
+
+    public static String getReadableDateString(int[] dateInt) {
+        String result = dateInt[2] + " ";
         switch (dateInt[1]) {
             case 1:
                 result += "JAN";
