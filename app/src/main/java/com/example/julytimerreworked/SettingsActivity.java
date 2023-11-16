@@ -83,5 +83,6 @@ public class SettingsActivity extends AppCompatActivity {
         show[3] = isDaysChecked;
 
         save.setShow(show);
+        saveExec.save(save, this);
     }
 }
