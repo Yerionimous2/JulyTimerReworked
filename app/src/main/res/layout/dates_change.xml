@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/changeDatesLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Hintergrundbild -->
@@ -11,10 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:background="@color/design_default_color_secondary"
         tools:ignore="ContentDescription" />
-    <!-- android:src mit Hintergrundbild austauschen -->
-    <!-- Button at the top occupying the entire width -->
     <Button
         android:id="@+id/changeDatesBackButton"
         android:layout_width="0dp"
@@ -29,7 +27,6 @@
         android:layout_marginEnd="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="30dp"
-        android:background="@color/black"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- TextView above the first button with 20dp margin -->
@@ -38,6 +35,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:paddingHorizontal="8dp"
         android:text="@string/changeDatesStartDateText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,6 @@
         android:layout_marginEnd="15dp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
-        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- TextView above the second button with 20dp margin -->
@@ -66,6 +65,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:paddingHorizontal="8dp"
         android:text="@string/changeDatesEndDateText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +87,6 @@
         android:layout_marginEnd="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/black"
         android:layout_marginTop="10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
