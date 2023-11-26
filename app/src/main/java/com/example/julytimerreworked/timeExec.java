@@ -5,7 +5,9 @@ import android.annotation.SuppressLint;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class timeExec {
@@ -18,6 +20,21 @@ public class timeExec {
             System.out.println("Debug: ParseException in timestamp");
         }
         return(b - a);
+    }
+
+
+    public static boolean validate(int[] startDateArray, int[] endDateArray) {
+        boolean result = true;
+        String startDate = StringCompiler.getPatternDate(startDateArray);
+        String endDate = StringCompiler.getPatternDate(endDateArray);
+        String nowString = "";
+        if(getDifferenceMilliSeconds(startDate, endDate) <= 0) result = false;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalDateTime now = LocalDateTime.now();
+            nowString = StringCompiler.getStringFromDateTime(now);
+        }
+        if(getDifferenceMilliSeconds(nowString, endDate) <= 0) result = false;
+        return result;
     }
 
     public static long timestamp(String arg) throws ParseException {

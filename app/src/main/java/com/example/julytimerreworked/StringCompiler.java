@@ -3,6 +3,8 @@ package com.example.julytimerreworked;
 import android.content.Context;
 
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class StringCompiler {
     public static String getTimeString(boolean[] show, long time, Context context) {
@@ -194,5 +196,53 @@ public class StringCompiler {
         }
         result += context.getString(R.string.time_till_seen);
         return result;
+    }
+
+    public static String getPatternDate(int[] dateArray) {
+        String result = "";                          //"yyyy-MM-dd HH:mm:ss.SSS"
+        String result0;
+
+        result0 = Integer.toString(dateArray[0]);
+        while(result0.length()+result.length() < 4) {
+            result += "0";
+        }
+        result += result0 + "-";
+
+        result0 = Integer.toString(dateArray[1]);
+        while(result0.length()+result.length() < 7) {
+            result += "0";
+        }
+        result += result0 + "-";
+
+        result0 = Integer.toString(dateArray[2]);
+        while(result0.length()+result.length() < 10) {
+            result += "0";
+        }
+        result += result0 + " ";
+
+        result0 = Integer.toString(dateArray[3]);
+        while(result0.length()+result.length() < 13) {
+            result += "0";
+        }
+        result += result0 + ":";
+
+        result0 = Integer.toString(dateArray[4]);
+        while(result0.length()+result.length() < 16) {
+            result += "0";
+        }
+        result += result0 + ":00.000";
+        return result;
+    }
+
+
+    public static String getStringFromDateTime(LocalDateTime now) {
+        // Gewünschtes Format
+        DateTimeFormatter formatter = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+            return(now.format(formatter));
+        }
+        // LocalDateTime in String umwandeln
+        return "";
     }
 }

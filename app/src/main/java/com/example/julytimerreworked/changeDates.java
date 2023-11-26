@@ -62,8 +62,11 @@ public class changeDates extends Fragment {
 
                     resultStartDateIntArray[3] = hourOfDay;
                     resultStartDateIntArray[4] = minute;
-                    btPickStartDate.setText(StringCompiler.getReadableDateString(resultStartDateIntArray));
-                    //TODO: Validate the Result and save it
+                    if(timeExec.validate(resultStartDateIntArray, endDateIntArray)) {
+                        btPickStartDate.setText(StringCompiler.getReadableDateString(resultStartDateIntArray));
+                        save.setStartTime(StringCompiler.getPatternDate(resultStartDateIntArray));
+                        saveExec.save(save, view.getContext());
+                    }
                 }, startDateIntArray[3], startDateIntArray[4], true);
         endDatePicker = new DatePickerDialog(context,
                 (view, year, monthOfYear, dayOfMonth) -> {
@@ -76,8 +79,11 @@ public class changeDates extends Fragment {
 
                     resultEndDateIntArray[3] = hourOfDay;
                     resultEndDateIntArray[4] = minute;
-                    btPickEndDate.setText(StringCompiler.getReadableDateString(resultEndDateIntArray));
-                    //TODO: Validate the Result and save it
+                    if(timeExec.validate(startDateIntArray, resultEndDateIntArray)) {
+                        btPickEndDate.setText(StringCompiler.getReadableDateString(resultEndDateIntArray));
+                        save.setEndTime(StringCompiler.getPatternDate(resultEndDateIntArray));
+                        saveExec.save(save, view.getContext());
+                    }
                 }, endDateIntArray[3], endDateIntArray[4], true);
     }
 
