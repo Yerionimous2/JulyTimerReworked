@@ -2,6 +2,7 @@ package com.example.julytimerreworked;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +43,23 @@ public class mileStones extends Fragment {
         setButtonListeners();
         setBackgroundImage(save);
         changeColors(save);
+        initialiseTimer();
 
         return view;
+    }
+
+    private void initialiseTimer() {
+        Handler handler = new Handler();
+        int milliDelay = 1000;
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                updateMileStones();
+                // Aktivität erneut starten
+                handler.postDelayed(this, milliDelay);
+            }
+        };
+        handler.postDelayed(myRunnable, milliDelay);
     }
 
     /**
@@ -184,5 +200,50 @@ public class mileStones extends Fragment {
         }
 
         background.setBackgroundColor(backgroundColor);
+    }
+
+    private void updateMileStones() {
+        TextView oneQuarter = view.findViewById(R.id.showMileStoneOneQuarter);
+        TextView oneThird = view.findViewById(R.id.showMileStoneOneThird);
+        TextView oneHalf = view.findViewById(R.id.showMileStoneOneHalf);
+        TextView twoThirds = view.findViewById(R.id.showMileStoneTwoThirds);
+        TextView threeQuarter = view.findViewById(R.id.showMileStoneThreeQuarters);
+        TextView ninetyPercent = view.findViewById(R.id.showMileStoneNinetyPercent);
+        TextView done = view.findViewById(R.id.showMileStoneDone);
+
+        int doneButtonColor = Color.parseColor("#20b000");
+        int doneTextColor = Color.parseColor("#77ff81");
+
+        JulyTimersave save = saveExec.load(view.getContext());
+        double percent = new xyzSet(save).getPercent();
+
+        if(timeExec.done(percent, 25)) {
+            oneQuarter.setBackgroundColor(doneButtonColor);
+            oneQuarter.setTextColor(doneTextColor);
+        }
+        if(timeExec.done(percent, 100/3)) {
+            oneThird.setBackgroundColor(doneButtonColor);
+            oneThird.setTextColor(doneTextColor);
+        }
+        if(timeExec.done(percent, 50)) {
+            oneHalf.setBackgroundColor(doneButtonColor);
+            oneHalf.setTextColor(doneTextColor);
+        }
+        if(timeExec.done(percent, 200/3)) {
+            twoThirds.setBackgroundColor(doneButtonColor);
+            twoThirds.setTextColor(doneTextColor);
+        }
+        if(timeExec.done(percent, 75)) {
+            threeQuarter.setBackgroundColor(doneButtonColor);
+            threeQuarter.setTextColor(doneTextColor);
+        }
+        if(timeExec.done(percent, 90)) {
+            ninetyPercent.setBackgroundColor(doneButtonColor);
+            ninetyPercent.setTextColor(doneTextColor);
+        }
+        if(timeExec.done(percent, 100)) {
+            done.setBackgroundColor(doneButtonColor);
+            done.setTextColor(doneTextColor);
+        }
     }
 }
