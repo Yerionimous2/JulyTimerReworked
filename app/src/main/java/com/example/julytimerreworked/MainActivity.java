@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Initialisiert den Timer, der die TextViews periodisch aktualisiert.
+     * Initialisiert die Timer, der die TextViews periodisch aktualisiert und die Farben der Zeit anpasst.
      */
     public void initialiseTimer() {
         Handler handler = new Handler();
@@ -74,6 +74,18 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         handler.postDelayed(myRunnable, milliDelay);
+
+        Handler handler2 = new Handler();
+        int milliDelay2 = 5000;
+        Runnable myRunnable2 = new Runnable() {
+            @Override
+            public void run() {
+                changeColors();
+                // Aktivität erneut starten
+                handler.postDelayed(this, milliDelay2);
+            }
+        };
+        handler2.postDelayed(myRunnable2, milliDelay2);
     }
 
     /**
