@@ -190,7 +190,10 @@ public class StringCompiler {
         }
         result += " " + dateInt[0] + " ";
 
-        result += dateInt[3] + ":" + dateInt[4];
+        if(dateInt[3] < 10) result += "0";
+        result += dateInt[3] + ":";
+        if(dateInt[4] < 10) result += "0";
+        result += dateInt[4];
         return result;
     }
 
