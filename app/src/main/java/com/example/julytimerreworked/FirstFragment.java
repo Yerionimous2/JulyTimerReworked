@@ -57,10 +57,10 @@ public class FirstFragment extends Fragment {
         }
     }
 
-    private void setColors(String[] ColorScheme) {
-        int buttonColor = Color.parseColor(ColorScheme[0]);
-        int textColor = Color.parseColor(ColorScheme[1]);
-        int backgroundColor = Color.parseColor(ColorScheme[2]);
+    private void setColors(String[] colorScheme) {
+        int buttonColor = Color.parseColor(colorScheme[0]);
+        int textColor = Color.parseColor(colorScheme[1]);
+        int backgroundColor = Color.parseColor(colorScheme[2]);
 
         Button btBack = view.findViewById(R.id.mainSettingsBack);
         Button btCustomizeShowTime = view.findViewById(R.id.mainSettingsTimeShow);
@@ -97,9 +97,11 @@ public class FirstFragment extends Fragment {
         Button btChangeDates = view.findViewById(R.id.mainSettingsChangeDates);
         Button btPickBackgroundImage = view.findViewById(R.id.mainSettingsChangeBackground);
         Button btReset = view.findViewById(R.id.mainSettingsReset);
+        Button btShowMileStones = view.findViewById(R.id.mainSettingsShowMilestones);
 
         btCustomizeShowTime.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_customizeShow));
         btChangeDates.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_changeDates));
+        btShowMileStones.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_mileStones));
         btBack.setOnClickListener((View) -> requireActivity().onBackPressed());
 
         btReset.setOnClickListener((View) -> {

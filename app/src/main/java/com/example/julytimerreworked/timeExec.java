@@ -37,6 +37,10 @@ public class timeExec {
         return result;
     }
 
+    public static boolean done(double percent, double needed) {
+        return percent >= needed;
+    }
+
     public static long timestamp(String arg) throws ParseException {
         @SuppressLint("SimpleDateFormat") DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         return Objects.requireNonNull(df.parse(arg)).getTime();

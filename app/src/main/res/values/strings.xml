@@ -23,4 +23,13 @@
     <string name="settings_main_label">Einstellungen</string>
     <string name="changeDatesStartDateText">Startdatum:</string>
     <string name="changeDatesEndDateText">Enddatum:</string>
+
+    <!-- Strings used for Milestone-->
+    <string name="oneQuarter">Ein Viertel ist schon geschafft!</string>
+    <string name="oneThird">Ein Drittel ist schon geschafft!</string>
+    <string name="oneHalf">Die Hälfte ist schon geschafft!</string>
+    <string name="twoThirds">Zwei Drittel sind schon geschafft!</string>
+    <string name="threeQuarters">Drei Viertel sind schon geschafft!</string>
+    <string name="ninetyPercent">90% sind schon geschafft!</string>
+    <string name="allDone">Der Timer ist fertig!</string>
 </resources>

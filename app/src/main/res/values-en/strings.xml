@@ -20,4 +20,11 @@
     <string name="settings_main_label">settings</string>
     <string name="changeDatesStartDateText">start date:</string>
     <string name="changeDatesEndDateText">end date:</string>
+    <string name="oneQuarter">One Quarter is done!</string>
+    <string name="oneThird">One Third is done!</string>
+    <string name="oneHalf">Half is done!</string>
+    <string name="twoThirds">Two Thirds are done!</string>
+    <string name="threeQuarters">Three Quarters are done!</string>
+    <string name="ninetyPercent">90 percent are done!</string>
+    <string name="allDone">We back together!</string>
 </resources>

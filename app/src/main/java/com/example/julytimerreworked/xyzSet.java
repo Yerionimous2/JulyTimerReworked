@@ -26,7 +26,7 @@ public class xyzSet {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             dr = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
         }
-        LocalDateTime now = null;
+        LocalDateTime now;
         String nowString = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             now = LocalDateTime.now(ZoneId.of("Europe/Berlin"));

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_changeDates"
             app:destination="@id/changeDates" />
+        <action
+            android:id="@+id/action_FirstFragment_to_mileStones"
+            app:destination="@id/mileStones" />
     </fragment>
 
     <fragment
@@ -35,6 +38,15 @@
         tools:layout="@layout/show_customize">
         <action
             android:id="@+id/action_customizeShow_to_FirstFragment"
+            app:destination="@id/FirstFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/mileStones"
+        android:name="com.example.julytimerreworked.mileStones"
+        android:label="@string/showMilestones"
+        tools:layout="@layout/show_milestones">
+        <action
+            android:id="@+id/action_mileStones_to_FirstFragment"
             app:destination="@id/FirstFragment"/>
     </fragment>
 </navigation>
