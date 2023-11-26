@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         save = saveExec.load(this);
-        System.out.println(save);
         initialiseTextViewTexts();
         updateTextViewTexts();
         changeColors();
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void initialiseTimer() {
         Handler handler = new Handler();
-        int milliDelay = 10;
+        int milliDelay = 50;
         Runnable myRunnable = new Runnable() {
             @Override
             public void run() {

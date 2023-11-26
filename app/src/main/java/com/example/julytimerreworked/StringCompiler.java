@@ -85,12 +85,12 @@ public class StringCompiler {
      */
     public static String getPercentString(double percent) {
         DecimalFormat dform = new DecimalFormat("#.#######");
-        String result = dform.format(percent) + "";
+        StringBuilder result = new StringBuilder(dform.format(percent) + "");
         if(Math.floor(percent) == percent) {
-            result += ".";
+            result.append(".");
         }
-        while(result.length() < 10) result += "0";
-        return result;
+        while(result.length() < 10) result.append("0");
+        return result.toString();
     }
 
     /**
@@ -253,39 +253,39 @@ public class StringCompiler {
      * @return Eine Datumszeichenkette im Muster "yyyy-MM-dd HH:mm:ss.SSS".
      */
     public static String getPatternDate(int[] dateArray) {
-        String result = "";                          //"yyyy-MM-dd HH:mm:ss.SSS"
+        StringBuilder result = new StringBuilder();                          //"yyyy-MM-dd HH:mm:ss.SSS"
         String result0;
 
         result0 = Integer.toString(dateArray[0]);
         while(result0.length()+result.length() < 4) {
-            result += "0";
+            result.append("0");
         }
-        result += result0 + "-";
+        result.append(result0).append("-");
 
         result0 = Integer.toString(dateArray[1]);
         while(result0.length()+result.length() < 7) {
-            result += "0";
+            result.append("0");
         }
-        result += result0 + "-";
+        result.append(result0).append("-");
 
         result0 = Integer.toString(dateArray[2]);
         while(result0.length()+result.length() < 10) {
-            result += "0";
+            result.append("0");
         }
-        result += result0 + " ";
+        result.append(result0).append(" ");
 
         result0 = Integer.toString(dateArray[3]);
         while(result0.length()+result.length() < 13) {
-            result += "0";
+            result.append("0");
         }
-        result += result0 + ":";
+        result.append(result0).append(":");
 
         result0 = Integer.toString(dateArray[4]);
         while(result0.length()+result.length() < 16) {
-            result += "0";
+            result.append("0");
         }
-        result += result0 + ":00.000";
-        return result;
+        result.append(result0).append(":00.000");
+        return result.toString();
     }
 
 
@@ -297,12 +297,28 @@ public class StringCompiler {
      */
     public static String getStringFromDateTime(LocalDateTime now) {
         // Gewünschtes Format
-        DateTimeFormatter formatter = null;
+        DateTimeFormatter formatter;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
             return(now.format(formatter));
         }
         // LocalDateTime in String umwandeln
         return "";
+    }
+
+    public static String getCustomizeDarkModeButtonText(JulyTimersave save, Context context) {
+        String result;
+        result = context.getString(R.string.colorScheme);
+        result += " ";
+        if(save.getDarkMode()[2] == 1) {
+            result += context.getString(R.string.bright);
+        }
+        if(save.getDarkMode()[2] == 2) {
+            result += context.getString(R.string.dark);
+        }
+        if(save.getDarkMode()[2] == 0) {
+            result += context.getString(R.string.automatic);
+        }
+        return result;
     }
 }
