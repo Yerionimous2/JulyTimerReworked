@@ -25,7 +25,6 @@ import com.example.julytimerreworked.databinding.ActivitySettingsBinding;
 
 public class SettingsActivity extends AppCompatActivity {
     private JulyTimersave save;
-    private customizeShow customizeFragment;
 
     private AppBarConfiguration appBarConfiguration;
 
@@ -40,7 +39,6 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_settings);
-        customizeFragment = (customizeShow) getSupportFragmentManager().findFragmentById(R.id.customizeShow);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     }
@@ -62,6 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void updateSave() {
         boolean[] show;
+        save = saveExec.load(this);
         show = save.getShow();
 
         //Update the time show intervals

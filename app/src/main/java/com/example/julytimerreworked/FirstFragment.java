@@ -109,6 +109,7 @@ public class FirstFragment extends Fragment {
             changeColors(save);
             ImageView background = view.findViewById(R.id.mainSettingsBackground);
             background.setImageBitmap(null);
+            background.setVisibility(android.view.View.INVISIBLE);
         });
 
         btPickBackgroundImage.setOnClickListener(view -> {
@@ -135,6 +136,7 @@ public class FirstFragment extends Fragment {
                     // update the preview image in the layout
                     ImageView backgroundImage = view.findViewById(R.id.mainSettingsBackground);
                     backgroundImage.setImageURI(selectedImageUri);
+                    backgroundImage.setVisibility(View.VISIBLE);
                     backgroundImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     BitmapDrawable BitmapBackground = (BitmapDrawable) backgroundImage.getDrawable();
                     Bitmap bitmap = BitmapBackground.getBitmap();
@@ -150,12 +152,18 @@ public class FirstFragment extends Fragment {
     private void setBackgroundImage(JulyTimersave save) {
         ImageView background = view.findViewById(R.id.mainSettingsBackground);
         background.setAlpha((float) 0.6);
-        if(save.getBackgroundImage() != null) background.setImageBitmap(save.getBackgroundImage());
+        if(save.getBackgroundImage() != null) {
+            background.setImageBitmap(save.getBackgroundImage());
+            background.setVisibility(View.VISIBLE);
+        } else {
+            background.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+
 
     @Override
     public void onDestroyView() {

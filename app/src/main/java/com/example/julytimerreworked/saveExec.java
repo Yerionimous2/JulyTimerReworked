@@ -116,7 +116,7 @@ public class saveExec {
         darkMode[2] = 0;
 
         JulyTimersave save = new JulyTimersave(startTime, endTime, brightColorScheme, darkColorScheme, show, null, darkMode);
-        //save(save, context);
+        save(save, context);
         return save;
     }
 
