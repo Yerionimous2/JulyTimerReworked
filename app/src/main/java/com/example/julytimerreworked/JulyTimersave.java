@@ -4,6 +4,10 @@ import android.graphics.Bitmap;
 
 import androidx.annotation.NonNull;
 
+/**
+ * Die Klasse JulyTimersave repräsentiert eine Datenklasse für die Speicherung von Timer-Einstellungen.
+ * Sie enthält Informationen wie Start- und Endzeit, Farbschemata, Anzeigeoptionen, Hintergrundbild und Dunkelmodus.
+ */
 public class JulyTimersave {
     private String startTime;
     private String endTime;
@@ -13,6 +17,17 @@ public class JulyTimersave {
     private Bitmap backgroundImage;
     private Integer[] darkMode;
 
+    /**
+     * Konstruktor für die Initialisierung der JulyTimersave-Instanz.
+     *
+     * @param s Die Startzeit des Timers.
+     * @param e Die Endzeit des Timers.
+     * @param bcs Das helle Farbschema als String-Array.
+     * @param dcs Das dunkle Farbschema als String-Array.
+     * @param show Ein boolean-Array, das die Anzeigeoptionen für Sekunden, Minuten, Stunden und Tage enthält.
+     * @param bi Das Hintergrundbild des Timers als Bitmap.
+     * @param dm Der Dunkelmodus als Integer-Array.
+     */
     public JulyTimersave(String s, String e, String[] bcs, String[] dcs, boolean[] show, Bitmap bi, Integer[] dm) {
         this.startTime = s;
         this.endTime = e;
@@ -23,6 +38,11 @@ public class JulyTimersave {
         this.darkMode = dm;
     }
 
+    /**
+     * Gibt eine übersichtliche String-Repräsentation der JulyTimersave-Instanz zurück.
+     *
+     * @return Eine formatierte Zeichenkette mit einigen Einstellungen.
+     */
     @NonNull
     public String toString() {
         String result = "";

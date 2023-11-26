@@ -6,7 +6,20 @@ import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Die Klasse `StringCompiler` enthält Hilfsmethoden zum Zusammenstellen von Zeichenketten für Anzeigezwecke.
+ * Sie bietet Funktionen für die Formatierung von Zeitspannen, Prozentangaben und Datumszeichenketten.
+ */
 public class StringCompiler {
+
+    /**
+     * Erstellt eine Zeichenkette, die die formatierte Zeitspanne basierend auf den aktivierten Zeiteinheiten anzeigt.
+     *
+     * @param show    Ein Array, das angibt, welche Zeiteinheiten aktiviert sind.
+     * @param time    Die zu formatierende Zeitspanne.
+     * @param context Der Anwendungskontext für Ressourcenzugriffe.
+     * @return Eine formatierte Zeichenkette der Zeitspanne.
+     */
     public static String getTimeString(boolean[] show, long time, Context context) {
         String result = "";
         int enabled = 0;
@@ -64,6 +77,12 @@ public class StringCompiler {
         return result;
     }
 
+    /**
+     * Erstellt eine Zeichenkette, die den Prozentwert mit bestimmter Dezimalgenauigkeit darstellt.
+     *
+     * @param percent Der Prozentwert.
+     * @return Eine formatierte Zeichenkette des Prozentwerts.
+     */
     public static String getPercentString(double percent) {
         DecimalFormat dform = new DecimalFormat("#.#######");
         String result = dform.format(percent) + "";
@@ -74,6 +93,13 @@ public class StringCompiler {
         return result;
     }
 
+    /**
+     * Erstellt eine Zeichenkette, die den Typ der vergangenen Zeit basierend auf aktivierten Zeiteinheiten angibt.
+     *
+     * @param show    Ein Array, das angibt, welche Zeiteinheiten aktiviert sind.
+     * @param context Der Anwendungskontext für Ressourcenzugriffe.
+     * @return Eine formatierte Zeichenkette für den vergangenen Zeittyp.
+     */
     public static String getElapsedString(boolean[] show, Context context) {
         int enabled = 0;
         for(boolean shows:show) {
@@ -102,11 +128,23 @@ public class StringCompiler {
         return result;
     }
 
+    /**
+     * Erstellt eine lesbar formatierte Datumszeichenkette aus einem Datumsstring.
+     *
+     * @param date Der Datumsstring.
+     * @return Eine lesbar formatierte Datumszeichenkette.
+     */
     public static String getReadableDateString(String date) {
         int[] dateInt = parseDateString(date);
         return getReadableDateString(dateInt);
     }
 
+    /**
+     * Erstellt eine lesbar formatierte Datumszeichenkette aus einem Datumsstring.
+     *
+     * @param dateInt Das Datumsarray.
+     * @return Eine lesbar formatierte Datumszeichenkette.
+     */
     public static String getReadableDateString(int[] dateInt) {
         String result = dateInt[2] + " ";
         switch (dateInt[1]) {
@@ -156,6 +194,12 @@ public class StringCompiler {
         return result;
     }
 
+    /**
+     * Parst einen Datumsstring und gibt ein Integer-Array mit den Einzelteilen des Datums zurück.
+     *
+     * @param dateString Der Datumsstring.
+     * @return Ein Integer-Array mit Jahr, Monat, Tag, Stunde und Minute.
+     */
     public static int[] parseDateString(String dateString) {
         int[] result = new int[5];
 
@@ -170,6 +214,7 @@ public class StringCompiler {
         return result;
     }
 
+    //TODO: docu
     public static String getTillSeenString(boolean[] show, Context context) {
         int enabled = 0;
         for(boolean shows:show) {
@@ -198,6 +243,12 @@ public class StringCompiler {
         return result;
     }
 
+    /**
+     * Erstellt eine Datumszeichenkette im Muster "yyyy-MM-dd HH:mm:ss.SSS" aus einem Integer-Array.
+     *
+     * @param dateArray Das Integer-Array mit Jahr, Monat, Tag, Stunde und Minute.
+     * @return Eine Datumszeichenkette im Muster "yyyy-MM-dd HH:mm:ss.SSS".
+     */
     public static String getPatternDate(int[] dateArray) {
         String result = "";                          //"yyyy-MM-dd HH:mm:ss.SSS"
         String result0;
@@ -235,6 +286,12 @@ public class StringCompiler {
     }
 
 
+    /**
+     * Wandelt ein LocalDateTime-Objekt in eine Zeichenkette im Muster "yyyy-MM-dd HH:mm:ss.SSS" um.
+     *
+     * @param now Das LocalDateTime-Objekt.
+     * @return Eine Zeichenkette im Muster "yyyy-MM-dd HH:mm:ss.SSS".
+     */
     public static String getStringFromDateTime(LocalDateTime now) {
         // Gewünschtes Format
         DateTimeFormatter formatter = null;

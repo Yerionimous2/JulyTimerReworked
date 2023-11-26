@@ -23,11 +23,23 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.julytimerreworked.databinding.ActivitySettingsBinding;
 
+/**
+ * Die Klasse `SettingsActivity` repräsentiert die Aktivität zur Verwaltung der Anwendungseinstellungen.
+ * Sie ermöglicht Benutzern die Konfiguration verschiedener Optionen im Zusammenhang mit Zeitintervallen und anderen Präferenzen.
+ *
+ * Diese Aktivität umfasst Methoden zum Aktualisieren und Speichern von Benutzereinstellungen, zum Umgang mit Navigation
+ * sowie zum Initialisieren der Benutzeroberflächenelemente.
+ */
 public class SettingsActivity extends AppCompatActivity {
     private JulyTimersave save;
 
     private AppBarConfiguration appBarConfiguration;
 
+    /**
+     * Wird aufgerufen, wenn die Aktivität erstellt wird. Initialisiert das Layout der Aktivität, die Navigation und die Einstellungen.
+     *
+     * @param savedInstanceState Ein Bundle, das den zuvor gespeicherten Zustand der Aktivität enthält, falls vorhanden.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +55,11 @@ public class SettingsActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     }
 
+    /**
+     * Behandelt den Klick auf die "Nach oben" Navigations-Schaltfläche.
+     *
+     * @return True, wenn die Navigation behandelt wurde, andernfalls false.
+     */
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_settings);
@@ -50,6 +67,9 @@ public class SettingsActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    /**
+     * Überschreibt den Druck auf die Zurück-Schaltfläche, um Benutzereinstellungen zu aktualisieren und zu speichern, bevor zurücknavigiert wird.
+     */
     @Override
     public void onBackPressed() {
         updateSave();
@@ -57,7 +77,9 @@ public class SettingsActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-
+    /**
+     * Aktualisiert die Benutzereinstellungen basierend auf dem Zustand der Kontrollkästchen in der Zeitkonfiguration und speichert die Änderungen.
+     */
     private void updateSave() {
         boolean[] show;
         save = saveExec.load(this);

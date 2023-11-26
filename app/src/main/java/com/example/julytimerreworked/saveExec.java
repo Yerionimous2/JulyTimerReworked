@@ -9,7 +9,17 @@ import android.os.Build;
 import java.io.ByteArrayOutputStream;
 import java.util.Base64;
 
+/**
+ * Die Klasse `saveExec` bietet Methoden zum Speichern und Laden von Einstellungsdaten.
+ */
 public class saveExec {
+
+    /**
+     * Speichert die Timerdaten in den SharedPreferences.
+     *
+     * @param toSave  Das `JulyTimersave`-Objekt, das gespeichert werden soll.
+     * @param context Der Kontext der Anwendung.
+     */
     public static void save(JulyTimersave toSave, Context context) {
         SharedPreferences sharedPref;
         sharedPref = context.getSharedPreferences("JulyTimer", Context.MODE_PRIVATE);
@@ -52,6 +62,12 @@ public class saveExec {
         editor.apply();
     }
 
+    /**
+     * Lädt die Timerdaten aus den SharedPreferences.
+     *
+     * @param context Der Kontext der Anwendung.
+     * @return Ein `JulyTimersave`-Objekt mit den geladenen Daten.
+     */
     public static JulyTimersave load(Context context) {
         SharedPreferences sharedPref;
         sharedPref = context.getSharedPreferences("JulyTimer", Context.MODE_PRIVATE);
@@ -90,6 +106,12 @@ public class saveExec {
         return new JulyTimersave(startTime, endTime, brightColorScheme, darkColorScheme, show, BackgroundImageBitmap, darkMode);
     }
 
+    /**
+     * Setzt die Timerdaten auf Standardwerte zurück.
+     *
+     * @param context Der Kontext der Anwendung.
+     * @return Ein neues `JulyTimersave`-Objekt mit den zurückgesetzten Daten.
+     */
     public static JulyTimersave reset(Context context) {
         String startTime = "2023-01-01 05:10:00.000";
         String endTime = "2024-01-01 05:10:00.000";
@@ -120,6 +142,13 @@ public class saveExec {
         return save;
     }
 
+    /**
+     * Lädt einen Byte-Array-Wert aus den SharedPreferences.
+     *
+     * @param name    Der Name des zu ladenden Werts.
+     * @param context Der Kontext der Anwendung.
+     * @return Ein Byte-Array, das den geladenen Wert repräsentiert.
+     */
     private static byte[] loadByteArray(String name, Context context) {
         SharedPreferences sharedPref;
         sharedPref = context.getSharedPreferences("JulyTimer", Context.MODE_PRIVATE);

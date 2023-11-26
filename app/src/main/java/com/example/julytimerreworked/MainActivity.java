@@ -14,9 +14,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * Die MainActivity repräsentiert die Hauptaktivität der Anwendung, die den Timer anzeigt.
+ */
 public class MainActivity extends AppCompatActivity {
     private JulyTimersave save;
 
+    /**
+     * Wird aufgerufen, wenn die Aktivität erstellt wird.
+     *
+     * @param savedInstanceState Ein Bundle-Objekt, das den Zustand der Aktivität enthält.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         initialiseButtonListener();
     }
 
+    //TODO: doku
     private void initialiseButtonListener() {
         Button btSettings = findViewById(R.id.BtSettings);
         Context context = this;
@@ -39,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Wird aufgerufen, wenn die Aktivität in den Vordergrund kommt oder wiederhergestellt wird.
+     */
     protected void onResume() {
         super.onResume();
         save = saveExec.load(this);
@@ -48,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         changeColors();
     }
 
+    /**
+     * Initialisiert den Timer, der die TextViews periodisch aktualisiert.
+     */
     public void initialiseTimer() {
         Handler handler = new Handler();
         int milliDelay = 10;
@@ -62,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(myRunnable, milliDelay);
     }
 
+    /**
+     * Ändert die Farbschemata der Benutzeroberfläche basierend auf den gespeicherten Daten.
+     * Wählt das richtige Farbchema und sendet es an setColors, welche die Farbänderung durchführt.
+     */
     public void changeColors() {
         if(save.getDarkMode()[2] == 0) {
             if(timeExec.checkTime(save.getDarkMode())) {
@@ -78,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Setzt die Farben der UI-Elemente basierend auf dem übergebenen Farbschema.
+     *
+     * @param colorScheme Ein String-Array, das die Farben für die Schaltflächen, den Text und den Hintergrund enthält.
+     */
     public void setColors(String[] colorScheme) {
         int buttonColor = Color.parseColor(colorScheme[0]);
         int textColor = Color.parseColor(colorScheme[1]);
@@ -117,6 +141,9 @@ public class MainActivity extends AppCompatActivity {
         layout.setBackgroundColor(backgroundColor);
     }
 
+    /**
+     * Initialisiert die TextView-Texte basierend auf den gespeicherten Daten.
+     */
     public void initialiseTextViewTexts() {
         TextView label1 = findViewById(R.id.lb1);
         TextView label3 = findViewById(R.id.lb3);
@@ -124,6 +151,9 @@ public class MainActivity extends AppCompatActivity {
         label3.setText(StringCompiler.getTillSeenString(save.getShow(), this));
     }
 
+    /**
+     * Aktualisiert die TextView-Texte basierend auf den Timer-Zeitdaten.
+     */
     public void updateTextViewTexts() {
         TextView label2 = findViewById(R.id.lb2);
         TextView label4 = findViewById(R.id.lb4);

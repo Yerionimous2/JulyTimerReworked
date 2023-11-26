@@ -25,6 +25,17 @@ public class FirstFragment extends Fragment {
 
     View view;
 
+    /**
+     * Diese Methode wird aufgerufen, um die Benutzeroberfläche für das erste Fragment anzuzeigen.
+     *
+     * @param inflater Der LayoutInflater, der verwendet wird, um die XML-Layoutdatei in die zugehörige
+     *                View-Komponente zu inflaten.
+     * @param container Die Elternansicht, in die die fragment_layout-Datei inflatet wird.
+     * @param savedInstanceState Wenn die Aktivität erneut erstellt wird (zum Beispiel bei einer
+     *                           Bildschirmrotation), enthält dieser Parameter die Daten, die von der
+     *                           Aktivität zuvor gespeichert wurden.
+     * @return Die erstellte Ansicht für das erste Fragment.
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -41,6 +52,12 @@ public class FirstFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Ändert die Farbschemata der Benutzeroberfläche basierend auf den gespeicherten Daten.
+     * Wählt das richtige Farbchema und sendet es an setColors, welche die Farbänderung durchführt.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Daten enthält.
+     */
     private void changeColors(JulyTimersave save) {
         if(save.getDarkMode()[2] == 0) {
             if(timeExec.checkTime(save.getDarkMode())) {
@@ -57,6 +74,11 @@ public class FirstFragment extends Fragment {
         }
     }
 
+    /**
+     * Setzt die Farben der UI-Elemente basierend auf dem übergebenen Farbschema.
+     *
+     * @param colorScheme Ein String-Array, das die Farben für die Schaltflächen, den Text und den Hintergrund enthält.
+     */
     private void setColors(String[] colorScheme) {
         int buttonColor = Color.parseColor(colorScheme[0]);
         int textColor = Color.parseColor(colorScheme[1]);
@@ -91,6 +113,9 @@ public class FirstFragment extends Fragment {
         layout.setBackgroundColor(backgroundColor);
     }
 
+    /**
+     * Setzt die OnClickListener für die Schaltflächen im Hauptmenü.
+     */
     private void setButtonListeners() {
         Button btCustomizeShowTime = view.findViewById(R.id.mainSettingsTimeShow);
         Button btBack = view.findViewById(R.id.mainSettingsBack);
@@ -122,6 +147,14 @@ public class FirstFragment extends Fragment {
         });
     }
 
+    /**
+     * Wird aufgerufen, wenn das Ergebnis der Bildauswahl-Aktivität zurückgegeben wird.
+     * Setzt das Hintergrundbild und speichert es.
+     *
+     * @param requestCode Der Code, der der gestarteten Aktivität zugeordnet ist.
+     * @param resultCode Der Ergebniscode der beendeten Aktivität.
+     * @param data Die Daten, die von der beendeten Aktivität zurückgegeben wurden.
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -129,13 +162,11 @@ public class FirstFragment extends Fragment {
 
         if (resultCode == RESULT_OK) {
 
-            // compare the resultCode with the
-            // SELECT_PICTURE constant
             if (requestCode == 1) {
-                // Get the url of the image from data
+
                 Uri selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
-                    // update the preview image in the layout
+
                     ImageView backgroundImage = view.findViewById(R.id.mainSettingsBackground);
                     backgroundImage.setImageURI(selectedImageUri);
                     backgroundImage.setVisibility(View.VISIBLE);
@@ -151,6 +182,11 @@ public class FirstFragment extends Fragment {
 
 
 
+    /**
+     * Setzt das Hintergrundbild für die Hauptmenüansicht basierend auf den gespeicherten Daten.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Daten enthält.
+     */
     private void setBackgroundImage(JulyTimersave save) {
         ImageView background = view.findViewById(R.id.mainSettingsBackground);
         background.setAlpha((float) 0.6);
@@ -160,16 +196,6 @@ public class FirstFragment extends Fragment {
         } else {
             background.setVisibility(View.INVISIBLE);
         }
-    }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
     }
 
 }

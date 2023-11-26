@@ -25,6 +25,17 @@ public class changeDates extends Fragment {
     DatePickerDialog endDatePicker;
     TimePickerDialog endTimePicker;
 
+    /**
+     * Diese Methode wird aufgerufen, um die Benutzeroberfläche für die Datumsänderung anzuzeigen.
+     *
+     * @param inflater Der LayoutInflater, der verwendet wird, um die XML-Layoutdatei in die zugehörige
+     *                View-Komponente zu inflaten.
+     * @param container Die Elternansicht, in die die fragment_layout-Datei inflatet wird.
+     * @param savedInstanceState Wenn die Aktivität erneut erstellt wird (zum Beispiel bei einer
+     *                           Bildschirmrotation), enthält dieser Parameter die Daten, die von der
+     *                           Aktivität zuvor gespeichert wurden.
+     * @return Die erstellte Ansicht für die Datumsänderung.
+     */
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
@@ -42,6 +53,11 @@ public class changeDates extends Fragment {
         return view;
     }
 
+    /**
+     * Erstellt die DatePicker- und TimePicker-Dialoge für die Auswahl von Start- und Enddaten.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Daten enthält.
+     */
     private void createDateTimePickers(JulyTimersave save) {
         Context context = view.getContext();
         Button btPickStartDate = view.findViewById(R.id.changeDatesStartDateButton);
@@ -87,6 +103,12 @@ public class changeDates extends Fragment {
                 }, endDateIntArray[3], endDateIntArray[4], true);
     }
 
+    /**
+     * Ändert die Farbschemata der Benutzeroberfläche basierend auf den gespeicherten Daten.
+     * Wählt das richtige Farbchema und sendet es an setColors, welche die Farbänderung durchführt.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Daten enthält.
+     */
     private void changeColors(JulyTimersave save) {
         if(save.getDarkMode()[2] == 0) {
             if(timeExec.checkTime(save.getDarkMode())) {
@@ -103,6 +125,11 @@ public class changeDates extends Fragment {
         }
     }
 
+    /**
+     * Setzt die Farben der UI-Elemente basierend auf dem übergebenen Farbschema.
+     *
+     * @param ColorScheme Ein String-Array, das die Farben für die Schaltflächen, den Text und den Hintergrund enthält.
+     */
     private void setColors(String[] ColorScheme) {
         int buttonColor = Color.parseColor(ColorScheme[0]);
         int textColor = Color.parseColor(ColorScheme[1]);
@@ -132,6 +159,11 @@ public class changeDates extends Fragment {
         layout.setBackgroundColor(backgroundColor);
     }
 
+    /**
+     * Setzt die OnClickListener für die Schaltflächen zum Auswahl von Start- und Enddaten sowie zur Rückkehr zum Einstellungsmenü.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Daten enthält.
+     */
     private void setButtonListeners(JulyTimersave save) {
         Button btPickStartDate = view.findViewById(R.id.changeDatesStartDateButton);
         Button btPickEndDate = view.findViewById(R.id.changeDatesEndDateButton);
@@ -149,6 +181,11 @@ public class changeDates extends Fragment {
         btBack.setOnClickListener((View) -> requireActivity().onBackPressed());
     }
 
+    /**
+     * Setzt die Beschriftungen für die Schaltflächen zur Auswahl von Start- und Enddaten basierend auf den gespeicherten Daten.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Daten enthält.
+     */
     private void setButtonTexts(JulyTimersave save) {
         Button btPickStartDate = view.findViewById(R.id.changeDatesStartDateButton);
         Button btPickEndDate = view.findViewById(R.id.changeDatesEndDateButton);
@@ -157,13 +194,20 @@ public class changeDates extends Fragment {
         btPickEndDate.setText(StringCompiler.getReadableDateString(save.getEndTime()));
     }
 
+    /**
+     * Entfernt den Zurück-Pfeil aus der ActionBar.
+     */
     private void removeBackArrow() {
         ActionBar actionBar = ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(false);
         }
     }
-
+    /**
+     * Setzt das Hintergrundbild für die Datumsänderungsansicht basierend auf den gespeicherten Daten.
+     *
+     * @param save Das JulyTimersave-Objekt, das unter anderem das Hintergrundbild enthält.
+     */
     private void setBackgroundImage(JulyTimersave save) {
         ImageView background = view.findViewById(R.id.changeDatesBackground);
         background.setAlpha((float) 0.6);

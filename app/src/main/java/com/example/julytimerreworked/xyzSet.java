@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Die Klasse `xyzSet` ist eine Momentaufnahme, wie weit die Zeit vorangeschritten ist.
+ */
 public class xyzSet {
     private long elapsed;
     private long remaining;
@@ -21,6 +24,11 @@ public class xyzSet {
         return percent;
     }
 
+    /**
+     * Konstruktor für die Klasse `xyzSet`. Berechnet verstrichene Zeit, verbleibende Zeit und Prozentsatz.
+     *
+     * @param times Ein `JulyTimersave`-Objekt mit den Start- und Endzeiten.
+     */
     public xyzSet(JulyTimersave times) {
         DateTimeFormatter dr = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {

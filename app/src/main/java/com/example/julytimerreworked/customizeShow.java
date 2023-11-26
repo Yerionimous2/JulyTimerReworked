@@ -20,6 +20,18 @@ import java.util.Objects;
 public class customizeShow extends Fragment {
     ShowCustomizeBinding binding;
     View view;
+
+    /**
+     * Diese Methode wird aufgerufen, um die Benutzeroberfläche für die Anzeige der Anpassungsoptionen anzuzeigen.
+     *
+     * @param inflater Der LayoutInflater, der verwendet wird, um die XML-Layoutdatei in die zugehörige
+     *                View-Komponente zu inflaten.
+     * @param container Die Elternansicht, in die die fragment_layout-Datei inflatet wird.
+     * @param savedInstanceState Wenn die Aktivität erneut erstellt wird (zum Beispiel bei einer
+     *                           Bildschirmrotation), enthält dieser Parameter die Daten, die von der
+     *                           Aktivität zuvor gespeichert wurden.
+     * @return Die erstellte Ansicht für die Anzeige der Anpassungsoptionen.
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -36,6 +48,14 @@ public class customizeShow extends Fragment {
         return view;
     }
 
+
+
+    /**
+     * Ändert die Farbschemata der Benutzeroberfläche basierend auf den gespeicherten Daten.
+     * Wählt das richtige Farbchema und sendet es an setColors, welche die Farbänderung durchführt.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Daten enthält.
+     */
     private void changeColors(JulyTimersave save) {
         if(save.getDarkMode()[2] == 0) {
             if(timeExec.checkTime(save.getDarkMode())) {
@@ -52,6 +72,11 @@ public class customizeShow extends Fragment {
         }
     }
 
+    /**
+     * Setzt die Farben der UI-Elemente basierend auf dem übergebenen Farbschema.
+     *
+     * @param ColorScheme Ein String-Array, das die Farben für die Schaltflächen, den Text und den Hintergrund enthält.
+     */
     private void setColors(String[] ColorScheme) {
         int buttonColor = Color.parseColor(ColorScheme[0]);
         int textColor = Color.parseColor(ColorScheme[1]);
@@ -81,6 +106,12 @@ public class customizeShow extends Fragment {
         layout.setBackgroundColor(backgroundColor);
     }
 
+    /**
+     * Initialisiert die Checkboxen basierend auf den gespeicherten Einstellungen.
+     * Setzt jeweils einen Haken, falls das Zeitintervall im Moment gezeigt wird.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Daten enthält.
+     */
     private void initialiseCheckboxes(JulyTimersave save) {
         CheckBox cbSeconds = view.findViewById(R.id.cbSeconds);
         CheckBox cbMinutes = view.findViewById(R.id.cbMinutes);
@@ -93,6 +124,9 @@ public class customizeShow extends Fragment {
         cbDays.setChecked(show[3]);
     }
 
+    /**
+     * Setzt den OnClickListener für die Zurück-Schaltfläche.
+     */
     private void setButtonListeners() {
         Button btBack = view.findViewById(R.id.customizeTimeShowBack);
         btBack.setOnClickListener((View) -> {
@@ -100,6 +134,9 @@ public class customizeShow extends Fragment {
         });
     }
 
+    /**
+     * Entfernt den Zurück-Pfeil aus der ActionBar.
+     */
     private void removeBackArrow() {
         ActionBar actionBar = ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
         if (actionBar != null) {

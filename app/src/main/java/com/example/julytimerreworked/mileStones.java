@@ -11,16 +11,24 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
-
-import org.w3c.dom.Text;
 
 import java.util.Objects;
 
+/**
+ * Das Fragment "mileStones" repräsentiert die Meilenstein-Ansicht der Anwendung.
+ */
 public class mileStones extends Fragment {
     View view;
 
+    /**
+     * Wird aufgerufen, um die Benutzeroberfläche für das Fragment zu erstellen.
+     *
+     * @param inflater           Der LayoutInflater, der verwendet wird, um die Ansicht zu erstellen.
+     * @param container          Der ViewGroup, in die die Ansicht eingefügt wird.
+     * @param savedInstanceState Ein Bundle, das den gespeicherten Zustand enthält.
+     * @return Die erstellte Ansicht.
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -38,6 +46,9 @@ public class mileStones extends Fragment {
         return view;
     }
 
+    /**
+     * Entfernt den Zurück-Pfeil aus der ActionBar.
+     */
     private void removeBackArrow() {
         ActionBar actionBar = ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
         if (actionBar != null) {
@@ -45,6 +56,11 @@ public class mileStones extends Fragment {
         }
     }
 
+    /**
+     * Setzt das Hintergrundbild der Ansicht basierend auf den gespeicherten Daten.
+     *
+     * @param save Ein JulyTimersave-Objekt, das die gespeicherten Daten enthält.
+     */
     private void setBackgroundImage(JulyTimersave save) {
         ImageView background = view.findViewById(R.id.showMileStonesBackground);
         background.setAlpha((float) 0.6);
@@ -56,11 +72,20 @@ public class mileStones extends Fragment {
         }
     }
 
+    /**
+     * Setzt die OnClickListener für die "Zurück"-Schaltfläche.
+     */
     private void setButtonListeners() {
         Button btBack = view.findViewById(R.id.showMileStonesBackButton);
         btBack.setOnClickListener((View) -> requireActivity().onBackPressed());
     }
 
+    /**
+     * Ändert die Farbschemata der Benutzeroberfläche basierend auf den gespeicherten Daten.
+     * Wählt das richtige Farbchema und sendet es an setColors, welche die Farbänderung durchführt.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Daten enthält.
+     */
     private void changeColors(JulyTimersave save) {
         if(save.getDarkMode()[2] == 0) {
             if(timeExec.checkTime(save.getDarkMode())) {
@@ -77,6 +102,11 @@ public class mileStones extends Fragment {
         }
     }
 
+    /**
+     * Setzt die Farben der UI-Elemente basierend auf dem übergebenen Farbschema.
+     *
+     * @param colorScheme Ein String-Array, das die Farben für die Schaltflächen, den Text und den Hintergrund enthält.
+     */
     private void setColors(String[]colorScheme) {
         int buttonColor = Color.parseColor(colorScheme[0]);
         int textColor = Color.parseColor(colorScheme[1]);
