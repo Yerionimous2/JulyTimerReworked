@@ -32,4 +32,16 @@
     <string name="threeQuarters">Drei Viertel sind schon geschafft!</string>
     <string name="ninetyPercent">90% sind schon geschafft!</string>
     <string name="allDone">Der Timer ist fertig!</string>
+
+    <!-- Strings used for Button Texts Customizing the Color Schemes-->
+    <string name="backgroundButtonText">Hinten</string>
+    <string name="buttonButtonText">Knopf</string>
+    <string name="textButtonText">Text</string>
+
+    <string name="brightModeColorSchemeLabel">Aktuelle Farben im hellen Modus:</string>
+    <string name="darkModeColorSchemeLabel">Aktuelle Farben im dunklen Modus:</string>
+    <string name="colorScheme">Farbmodus:</string>
+    <string name="dark">dunkel</string>
+    <string name="bright">hell</string>
+    <string name="automatic">automatisch</string>
 </resources>

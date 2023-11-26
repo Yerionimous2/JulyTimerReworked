@@ -123,10 +123,12 @@ public class FirstFragment extends Fragment {
         Button btPickBackgroundImage = view.findViewById(R.id.mainSettingsChangeBackground);
         Button btReset = view.findViewById(R.id.mainSettingsReset);
         Button btShowMileStones = view.findViewById(R.id.mainSettingsShowMilestones);
+        Button btCustomizeColorScheme = view.findViewById(R.id.mainSettingsCustomizeDarkMode);
 
         btCustomizeShowTime.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_customizeShow));
         btChangeDates.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_changeDates));
         btShowMileStones.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_mileStones));
+        btCustomizeColorScheme.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_customizeColorScheme));
         btBack.setOnClickListener((View) -> requireActivity().onBackPressed());
 
         btReset.setOnClickListener((View) -> {

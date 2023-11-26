@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_mileStones"
             app:destination="@id/mileStones" />
+        <action
+            android:id="@+id/action_FirstFragment_to_customizeColorScheme"
+            app:destination="@id/customizeColorScheme" />
     </fragment>
 
     <fragment
@@ -47,6 +50,15 @@
         tools:layout="@layout/show_milestones">
         <action
             android:id="@+id/action_mileStones_to_FirstFragment"
+            app:destination="@id/FirstFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/customizeColorScheme"
+        android:name="com.example.julytimerreworked.customizeColorScheme"
+        android:label="@string/customizeDarkmode"
+        tools:layout="@layout/color_scheme_customize">
+        <action
+            android:id="@+id/action_customizeColorScheme_to_FirstFragment"
             app:destination="@id/FirstFragment"/>
     </fragment>
 </navigation>

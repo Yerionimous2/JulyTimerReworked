@@ -112,8 +112,8 @@ public class mileStones extends Fragment {
         int textColor = Color.parseColor(colorScheme[1]);
         int backgroundColor = Color.parseColor(colorScheme[2]);
 
-        int doneButtonColor = Color.parseColor("#000000");
-        int doneTextColor = Color.parseColor("#FFFFFF"); //TODO: think hard about the colors.
+        int doneButtonColor = Color.parseColor("#20b000");
+        int doneTextColor = Color.parseColor("#77ff81");
 
         JulyTimersave save = saveExec.load(view.getContext());
         double percent = new xyzSet(save).getPercent();

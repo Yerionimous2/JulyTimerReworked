@@ -27,4 +27,13 @@
     <string name="threeQuarters">Three Quarters are done!</string>
     <string name="ninetyPercent">90 percent are done!</string>
     <string name="allDone">We back together!</string>
+    <string name="backgroundButtonText">back</string>
+    <string name="buttonButtonText">button</string>
+    <string name="textButtonText">text</string>
+    <string name="brightModeColorSchemeLabel">color scheme in bright mode:</string>
+    <string name="darkModeColorSchemeLabel">color scheme in dark mode:</string>
+    <string name="colorScheme">ColorScheme:</string>
+    <string name="dark">dark</string>
+    <string name="bright">bright</string>
+    <string name="automatic">automatic</string>
 </resources>
