@@ -312,7 +312,14 @@ public class StringCompiler {
         return "";
     }
 
-    //TODO: docu
+    /**
+     * Diese Methode generiert einen angepassten Text für den Dark Mode-Button, basierend auf den gespeicherten Einstellungen
+     * und dem Anwendungskontext.
+     *
+     * @param save Die {@code JulyTimersave}-Instanz, die die gespeicherten Einstellungen enthält.
+     * @param context Der Anwendungskontext, der für die Ressourcenauflösung benötigt wird.
+     * @return Ein {@code String}, der den angepassten Text für den Dark Mode-Button darstellt.
+     */
     public static String getCustomizeDarkModeButtonText(JulyTimersave save, Context context) {
         String result;
         result = context.getString(R.string.colorScheme);
@@ -329,21 +336,42 @@ public class StringCompiler {
         return result;
     }
 
-    //TODO: docu
+    /**
+     * Diese Methode generiert einen Text, der den Startzeitpunkt des Dark Mode darstellt,
+     * basierend auf den gespeicherten Einstellungen und dem Anwendungskontext.
+     *
+     * @param save Die {@code JulyTimersave}-Instanz, die die gespeicherten Einstellungen enthält.
+     * @param context Der Anwendungskontext, der für die Ressourcenauflösung benötigt wird.
+     * @return Ein {@code String}, der den Text für den Startzeitpunkt des Dark Mode darstellt.
+     */
     public static String getStartDarkModeText(JulyTimersave save, Context context) {
         String result = context.getString(R.string.beginDarkMode);
         result += " " + save.getDarkMode()[0] + " " + context.getString(R.string.oClock);
         return result;
     }
 
-    //TODO: docu
+    /**
+     * Diese Methode generiert einen Text, der den Endzeitpunkt des Dark Mode darstellt,
+     * basierend auf den gespeicherten Einstellungen und dem Anwendungskontext.
+     *
+     * @param save Die {@code JulyTimersave}-Instanz, die die gespeicherten Einstellungen enthält.
+     * @param context Der Anwendungskontext, der für die Ressourcenauflösung benötigt wird.
+     * @return Ein {@code String}, der den Text für den Endzeitpunkt des Dark Mode darstellt.
+     */
     public static String getEndDarkModeText(JulyTimersave save, Context context) {
         String result = context.getString(R.string.endDarkMode);
         result += " " + save.getDarkMode()[1] + " " + context.getString(R.string.oClock);
         return result;
     }
 
-    //TODO: docu
+    /**
+     * Diese Methode generiert einen Text, der die Haupteinstellung für die Anzeige von Nachrichten darstellt,
+     * basierend auf den gespeicherten Einstellungen und dem Anwendungskontext.
+     *
+     * @param save Die {@code JulyTimersave}-Instanz, die die gespeicherten Einstellungen enthält.
+     * @param context Der Anwendungskontext, der für die Ressourcenauflösung benötigt wird.
+     * @return Ein {@code String}, der den Text für die Haupteinstellung zur Anzeige von Nachrichten darstellt.
+     */
     public static String getMainSettingsMessageText(JulyTimersave save, Context context) {
         String result = context.getString(R.string.showMessage);
         if(save.isGetMessage()) {
@@ -354,7 +382,13 @@ public class StringCompiler {
         return result;
     }
 
-    //TODO: docu
+    /**
+     * Diese Methode ersetzt das letzte Zeichen in einem gegebenen String durch ein neues Zeichen.
+     *
+     * @param content Der ursprüngliche {@code String}, dessen letztes Zeichen ersetzt werden soll.
+     * @param c Das Zeichen, durch das das letzte Zeichen ersetzt werden soll.
+     * @return Ein neuer {@code String}, der das ursprüngliche String mit dem ersetzen letzten Zeichen darstellt.
+     */
     public static String replacelast(String content, char c) {
         content = content.substring(0, content.length() - 1);
         content += c;
