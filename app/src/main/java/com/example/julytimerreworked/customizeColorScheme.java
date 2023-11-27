@@ -2,6 +2,7 @@ package com.example.julytimerreworked;
 
 import android.app.TimePickerDialog;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -309,6 +310,12 @@ public class customizeColorScheme extends Fragment {
         TextView darkModeEndTimeLabel = view.findViewById(R.id.darkModeEndTimeLabel);
 
         View layout = view.findViewById(R.id.customizeColorSchemeLayout);
+
+        ActionBar actionBar = ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
+
+        if(actionBar != null) {
+            actionBar.setBackgroundDrawable(new ColorDrawable(backgroundColor));
+        }
 
         btBack.setBackgroundColor(buttonColor);
         btChangeDarkMode.setBackgroundColor(buttonColor);

@@ -1,11 +1,13 @@
 package com.example.julytimerreworked;
 
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.Objects;
 
 /**
  * Die MainActivity repräsentiert die Hauptaktivität der Anwendung, die den Timer anzeigt.
@@ -142,6 +146,9 @@ public class MainActivity extends AppCompatActivity {
         layout1.setBackgroundColor(buttonColor);
         layout2.setBackgroundColor(buttonColor);
         layout3.setBackgroundColor(buttonColor);
+
+        ActionBar actionBar =  Objects.requireNonNull(getSupportActionBar());
+        actionBar.setBackgroundDrawable(new ColorDrawable(backgroundColor));
 
         //Hintergrund
         ImageView background = findViewById(R.id.imBackground);

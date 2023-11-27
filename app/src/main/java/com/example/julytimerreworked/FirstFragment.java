@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,9 +18,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import java.util.Objects;
 
 
 public class FirstFragment extends Fragment {
@@ -101,6 +105,12 @@ public class FirstFragment extends Fragment {
         Button btReset = view.findViewById(R.id.mainSettingsReset);
 
         View layout = view.findViewById(R.id.settingsMainLayout);
+
+        ActionBar actionBar = ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
+
+        if(actionBar != null) {
+            actionBar.setBackgroundDrawable(new ColorDrawable(backgroundColor));
+        }
 
         btBack.setBackgroundColor(buttonColor);
         btCustomizeShowTime.setBackgroundColor(buttonColor);

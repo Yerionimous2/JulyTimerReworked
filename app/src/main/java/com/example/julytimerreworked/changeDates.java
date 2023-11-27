@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -143,6 +144,12 @@ public class changeDates extends Fragment {
         TextView lbEndDate = view.findViewById(R.id.changeDatesEndDateText);
 
         View layout = view.findViewById(R.id.changeDatesLayout);
+
+        ActionBar actionBar = ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
+
+        if(actionBar != null) {
+            actionBar.setBackgroundDrawable(new ColorDrawable(backgroundColor));
+        }
 
         btBack.setBackgroundColor(buttonColor);
         btPickStartDate.setBackgroundColor(buttonColor);

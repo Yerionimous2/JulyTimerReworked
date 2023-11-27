@@ -1,6 +1,7 @@
 package com.example.julytimerreworked;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -145,6 +146,12 @@ public class mileStones extends Fragment {
         TextView done = view.findViewById(R.id.showMileStoneDone);
 
         View background = view.findViewById(R.id.showMileStonesLayout);
+
+        ActionBar actionBar = ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
+
+        if(actionBar != null) {
+            actionBar.setBackgroundDrawable(new ColorDrawable(backgroundColor));
+        }
 
         btBack.setBackgroundColor(buttonColor);
         btBack.setTextColor(textColor);

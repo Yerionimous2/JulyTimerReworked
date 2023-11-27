@@ -1,6 +1,7 @@
 package com.example.julytimerreworked;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,6 +103,12 @@ public class customizeShow extends Fragment {
         CheckBox cbDays = view.findViewById(R.id.cbDays);
 
         View layout = view.findViewById(R.id.customizeTimeLayout);
+
+        ActionBar actionBar = ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
+
+        if(actionBar != null) {
+            actionBar.setBackgroundDrawable(new ColorDrawable(backgroundColor));
+        }
 
         btBack.setBackgroundColor(buttonColor);
         cbSeconds.setBackgroundColor(buttonColor);
