@@ -217,7 +217,13 @@ public class StringCompiler {
         return result;
     }
 
-    //TODO: docu
+    /**
+     * Erstellt eine Zeichenkette, die die verbleibende Zeit bis zum Anzeigen basierend auf den ausgewählten Zeitkomponenten darstellt.
+     *
+     * @param show    Ein boolean-Array, das angibt, welche Zeitkomponenten angezeigt werden sollen.
+     * @param context Der Kontext der Anwendung.
+     * @return Eine Zeichenkette, die die verbleibende Zeit bis zum Anzeigen repräsentiert.
+     */
     public static String getTillSeenString(boolean[] show, Context context) {
         int enabled = 0;
         for(boolean shows:show) {
@@ -306,6 +312,7 @@ public class StringCompiler {
         return "";
     }
 
+    //TODO: docu
     public static String getCustomizeDarkModeButtonText(JulyTimersave save, Context context) {
         String result;
         result = context.getString(R.string.colorScheme);
@@ -322,18 +329,21 @@ public class StringCompiler {
         return result;
     }
 
+    //TODO: docu
     public static String getStartDarkModeText(JulyTimersave save, Context context) {
         String result = context.getString(R.string.beginDarkMode);
         result += " " + save.getDarkMode()[0] + " " + context.getString(R.string.oClock);
         return result;
     }
 
+    //TODO: docu
     public static String getEndDarkModeText(JulyTimersave save, Context context) {
         String result = context.getString(R.string.endDarkMode);
         result += " " + save.getDarkMode()[1] + " " + context.getString(R.string.oClock);
         return result;
     }
 
+    //TODO: docu
     public static String getMainSettingsMessageText(JulyTimersave save, Context context) {
         String result = context.getString(R.string.showMessage);
         if(save.isGetMessage()) {
@@ -344,6 +354,7 @@ public class StringCompiler {
         return result;
     }
 
+    //TODO: docu
     public static String replacelast(String content, char c) {
         content = content.substring(0, content.length() - 1);
         content += c;

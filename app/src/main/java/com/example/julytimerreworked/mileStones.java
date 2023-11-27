@@ -209,6 +209,9 @@ public class mileStones extends Fragment {
         background.setBackgroundColor(backgroundColor);
     }
 
+    /**
+     * Aktualisiert die Meilenstein-Anzeigen auf der Benutzeroberfläche basierend auf dem aktuellen Fortschritt.
+     */
     private void updateMileStones() {
         TextView oneQuarter = view.findViewById(R.id.showMileStoneOneQuarter);
         TextView oneThird = view.findViewById(R.id.showMileStoneOneThird);

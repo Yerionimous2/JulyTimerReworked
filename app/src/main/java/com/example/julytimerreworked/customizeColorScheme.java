@@ -19,9 +19,47 @@ import java.util.Objects;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
+/**
+ * Die Klasse `customizeColorScheme` ist ein Fragment, das es dem Benutzer ermöglicht, das Farbschema
+ * und die Erscheinungseinstellungen für die Anwendung "July Timer" anzupassen.
+ *
+ * Der Benutzer kann verschiedene Farbeigenschaften wie Knopffarben, Textfarben und Hintergrundfarben anpassen.
+ * Darüber hinaus kann der Benutzer die Start- und Endzeiten für den Dunkelmodus festlegen. Die Klasse enthält
+ * Funktionen zum Anzeigen eines Farbauswahl-Dialogs, zum Bearbeiten der Zeitauswahl über einen TimePickerDialog
+ * und zum Aktualisieren der Benutzeroberfläche basierend auf den Benutzerpräferenzen.
+ *
+ * Diese Klasse erweitert die Fragment-Klasse und ist mit dem Layout `color_scheme_customize.xml` verknüpft.
+ *
+ * Funktionen:
+ * - Anpassung von Dunkel- und Hell-Farbschemata
+ * - Festlegen von Start- und Endzeiten für den Dunkelmodus
+ * - Anzeigen und Aktualisieren von Benutzeroberflächenelementen basierend auf Benutzerpräferenzen
+ * - Behandlung von Farbauswahl-Dialogen für verschiedene Benutzeroberflächenelemente
+ *
+ * Verwendung:
+ * - Fügen Sie dieses Fragment in die Aktivität oder das Layout ein, in dem die Farbanpassung erforderlich ist.
+ * - Nutzen Sie die bereitgestellten Methoden, um Listener einzurichten, Farbänderungen zu handhaben und
+ *   Benutzeroberflächenelemente zu aktualisieren.
+ *
+ * Hinweis: Stellen Sie sicher, dass die entsprechende Layout-Datei (`color_scheme_customize.xml`) ordnungsgemäß
+ * gestaltet ist, um die in dieser Klasse referenzierten Benutzeroberflächenelemente aufzunehmen.
+ *
+ * @author Yerionimous
+ */
 public class customizeColorScheme extends Fragment {
 
     View view;
+
+    /**
+     * Erstellt und liefert die Benutzeroberfläche für die Farbschema-Anpassung.
+     * Initialisiert die UI-Elemente, setzt Listener und aktualisiert die Anzeige basierend auf gespeicherten
+     * Benutzerpräferenzen.
+     *
+     * @param inflater           Der LayoutInflater, der zum Aufblasen des Layouts verwendet wird.
+     * @param container          Die Ansicht, in die das Fragment eingefügt wird.
+     * @param savedInstanceState Die gespeicherten Zustandsinformationen, falls vorhanden.
+     * @return Die erstellte View für das Fragment.
+     */
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
@@ -38,11 +76,21 @@ public class customizeColorScheme extends Fragment {
         return view;
     }
 
+    /**
+     * Setzt die Texte für die UI-Elemente basierend auf den gespeicherten Benutzerpräferenzen.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Präferenzen enthält.
+     */
     private void setTexts(JulyTimersave save) {
         setButtonText(save);
         setTextViewTexts(save);
     }
 
+    /**
+     * Setzt die Texte für die TextView-Elemente basierend auf den gespeicherten Benutzerpräferenzen.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Präferenzen enthält.
+     */
     private void setTextViewTexts(JulyTimersave save) {
         TextView darkModeStartTimeLabel = view.findViewById(R.id.darkModeStartTimeLabel);
         TextView darkModeEndTimeLabel = view.findViewById(R.id.darkModeEndTimeLabel);
@@ -51,6 +99,9 @@ public class customizeColorScheme extends Fragment {
         darkModeEndTimeLabel.setText(StringCompiler.getEndDarkModeText(save, view.getContext()));
     }
 
+    /**
+     * Entfernt den Zurück-Pfeil aus der ActionBar.
+     */
     private void removeBackArrow() {
         ActionBar actionBar = ((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar();
         if (actionBar != null) {
@@ -58,6 +109,11 @@ public class customizeColorScheme extends Fragment {
         }
     }
 
+    /**
+     * Setzt das Hintergrundbild in der ImageView basierend auf den gespeicherten Benutzerpräferenzen.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Präferenzen enthält.
+     */
     private void setBackgroundImage(JulyTimersave save) {
         ImageView background = view.findViewById(R.id.customizeColorSchemeBackground);
         background.setAlpha((float) 0.6);
@@ -91,7 +147,13 @@ public class customizeColorScheme extends Fragment {
         changeColors(save);
     };
 
-    // Funktion, um den TimePickerDialog zu zeigen
+    /**
+     * Zeigt den TimePickerDialog für den Startzeitpunkt an und aktualisiert die gespeicherten Präferenzen
+     * basierend auf der ausgewählten Zeit.
+     *
+     * @param listener   Der TimePickerDialog.OnTimeSetListener für den Startzeitpunkt.
+     * @param startHour  Die Stunde des Startzeitpunkts.
+     */
     private void showTimePickerDialog(TimePickerDialog.OnTimeSetListener listener, int startHour) {
         TimePickerDialog timePickerDialog = new TimePickerDialog(
                 requireContext(),
@@ -103,6 +165,10 @@ public class customizeColorScheme extends Fragment {
         timePickerDialog.show();
     }
 
+    /**
+     * Setzt die Listener für die Buttons in der Benutzeroberfläche, um Aktionen bei Benutzerinteraktionen
+     * auszulösen, wie das Ändern der Farbschemata oder das Öffnen des TimePickerDialogs.
+     */
     private void setButtonListeners() {
         JulyTimersave save = saveExec.load(view.getContext());
 
@@ -217,6 +283,13 @@ public class customizeColorScheme extends Fragment {
         });
     }
 
+    /**
+     * Ersetzt eine Farbe in den gespeicherten Farbschemata und speichert die aktualisierten Präferenzen.
+     *
+     * @param darkmode Das Farbschema, entweder für den Dunkelmodus (0) oder den Hellmodus (1).
+     * @param place    Die Position der zu ersetzenden Farbe im Farbschema.
+     * @param color    Die neue Farbe, die gesetzt werden soll.
+     */
     private void replace(int darkmode, int place, int color) {
         JulyTimersave save = saveExec.load(view.getContext());
         String colorString = String.format("#%06X", 0xFFFFFF & color);
@@ -232,7 +305,9 @@ public class customizeColorScheme extends Fragment {
         saveExec.save(save, view.getContext());
     }
 
-
+    /**
+     * Rotiert das Farbschema um 1 und aktualisiert die Benutzeroberfläche basierend auf den neuen Präferenzen.
+     */
     private void rotateColorScheme() {
         JulyTimersave save = saveExec.load(view.getContext());
         Integer[] mode = save.getDarkMode();
@@ -247,6 +322,11 @@ public class customizeColorScheme extends Fragment {
         showAutomaticText(mode[2]);
     }
 
+    /**
+     * Zeigt oder versteckt die Texte für die automatische Anzeige basierend auf dem ausgewählten Modus.
+     *
+     * @param mode Der ausgewählte Modus (0 für automatisch, 1 für hell, 2 für dunkel).
+     */
     private void showAutomaticText(int mode) {
         TextView darkModeStartTimeLabel = view.findViewById(R.id.darkModeStartTimeLabel);
         TextView darkModeEndTimeLabel = view.findViewById(R.id.darkModeEndTimeLabel);
@@ -259,6 +339,11 @@ public class customizeColorScheme extends Fragment {
         }
     }
 
+    /**
+     * Ändert die Farben in der Benutzeroberfläche basierend auf den gespeicherten Präferenzen.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Präferenzen enthält.
+     */
     private void changeColors(JulyTimersave save) {
         if(save.getDarkMode()[2] == 0) {
             if(timeExec.checkTime(save.getDarkMode())) {
@@ -296,6 +381,11 @@ public class customizeColorScheme extends Fragment {
         btChangeBrightBackground.setBackgroundColor(brightBackgroundColor);
     }
 
+    /**
+     * Setzt die Farben für die UI-Elemente basierend auf dem übergebenen Farbschema.
+     *
+     * @param ColorScheme Ein String-Array mit den Farbwerten (Button, Text, Hintergrund).
+     */
     private void setColors(String[] ColorScheme) {
         int buttonColor = Color.parseColor(ColorScheme[0]);
         int textColor = Color.parseColor(ColorScheme[1]);
@@ -334,7 +424,11 @@ public class customizeColorScheme extends Fragment {
         layout.setBackgroundColor(backgroundColor);
     }
 
-
+    /**
+     * Setzt den Text des Button-Elements basierend auf den gespeicherten Präferenzen.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Präferenzen enthält.
+     */
     private void setButtonText(JulyTimersave save) {
         Button btSelectDarkMode = view.findViewById(R.id.customizeColorSchemeChangeButton);
         btSelectDarkMode.setText(StringCompiler.getCustomizeDarkModeButtonText(save, view.getContext()));

@@ -20,7 +20,6 @@ import java.util.Objects;
 
 
 public class customizeShow extends Fragment {
-    ShowCustomizeBinding binding;
     View view;
 
     /**
@@ -148,9 +147,7 @@ public class customizeShow extends Fragment {
      */
     private void setButtonListeners() {
         Button btBack = view.findViewById(R.id.customizeTimeShowBack);
-        btBack.setOnClickListener((View) -> {
-            requireActivity().onBackPressed();
-        });
+        btBack.setOnClickListener((View) -> requireActivity().onBackPressed());
     }
 
     /**

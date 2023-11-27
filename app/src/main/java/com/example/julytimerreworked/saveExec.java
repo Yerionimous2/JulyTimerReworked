@@ -157,7 +157,7 @@ public class saveExec {
         SharedPreferences sharedPref;
         sharedPref = context.getSharedPreferences("JulyTimer", Context.MODE_PRIVATE);
         byte[] result = null;
-        String string = sharedPref.getString(name, null);
+        String string = sharedPref.getString(name, "kein BG gesetzt.");
         if(string.equals("kein BG gesetzt.")) {
             string = null;
         }

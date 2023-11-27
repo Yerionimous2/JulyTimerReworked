@@ -10,7 +10,17 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+/**
+ * Klasse zur Verwaltung von Benachrichtigungen und zum Senden von Nachrichten.
+ */
 public class messageHandler {
+
+    /**
+     * Sendet eine Benachrichtigung mit den angegebenen Zeiten und dem Kontext.
+     *
+     * @param times   Das xyzSet-Objekt, das die Zeiten enthält.
+     * @param context Der Kontext, in dem die Benachrichtigung gesendet wird.
+     */
     public static void sendMessage(xyzSet times, Context context) {
         JulyTimersave save = saveExec.load(context);
         String title = StringCompiler.getTimeString(save.getShow(), times.getRemaining(), context);
@@ -37,6 +47,11 @@ public class messageHandler {
         notificationManager.notify(1, builder.build());
     }
 
+    /**
+     * Entfernt die angezeigte Benachrichtigung.
+     *
+     * @param context Der Kontext, in dem die Benachrichtigung entfernt wird.
+     */
     static void removeMessage(Context context) {
         NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

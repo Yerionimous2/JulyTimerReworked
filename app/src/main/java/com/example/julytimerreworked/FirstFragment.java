@@ -58,6 +58,11 @@ public class FirstFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Setzt den Text des Nachrichten-Button-Elements basierend auf den gespeicherten Präferenzen.
+     *
+     * @param save Das JulyTimersave-Objekt, das die gespeicherten Präferenzen enthält.
+     */
     private void setMessageButtonText(JulyTimersave save) {
         Button btMessage = view.findViewById(R.id.mainSettingsChangeMessage);
         btMessage.setText(StringCompiler.getMainSettingsMessageText(save, view.getContext()));
