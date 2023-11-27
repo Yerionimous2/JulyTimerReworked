@@ -36,4 +36,7 @@
     <string name="dark">dark</string>
     <string name="bright">bright</string>
     <string name="automatic">automatic</string>
+    <string name="beginDarkMode">Begin of dark mode:</string>
+    <string name="endDarkMode">Begin of bright mode:</string>
+    <string name="oClock">o\' Clock</string>
 </resources>

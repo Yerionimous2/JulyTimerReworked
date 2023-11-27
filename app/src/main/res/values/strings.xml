@@ -44,4 +44,8 @@
     <string name="dark">dunkel</string>
     <string name="bright">hell</string>
     <string name="automatic">automatisch</string>
+
+    <string name="beginDarkMode">Beginn des dunklen Modus:</string>
+    <string name="endDarkMode">Beginn des hellen Modus:</string>
+    <string name="oClock">Uhr</string>
 </resources>

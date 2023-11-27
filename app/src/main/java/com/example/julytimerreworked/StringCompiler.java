@@ -321,4 +321,16 @@ public class StringCompiler {
         }
         return result;
     }
+
+    public static String getStartDarkModeText(JulyTimersave save, Context context) {
+        String result = context.getString(R.string.beginDarkMode);
+        result += " " + save.getDarkMode()[0] + " " + context.getString(R.string.oClock);
+        return result;
+    }
+
+    public static String getEndDarkModeText(JulyTimersave save, Context context) {
+        String result = context.getString(R.string.endDarkMode);
+        result += " " + save.getDarkMode()[1] + " " + context.getString(R.string.oClock);
+        return result;
+    }
 }

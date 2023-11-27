@@ -1,5 +1,6 @@
 package com.example.julytimerreworked;
 
+import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,11 +30,24 @@ public class customizeColorScheme extends Fragment {
         removeBackArrow();
         JulyTimersave save = saveExec.load(view.getContext());
         setButtonListeners();
-        setButtonText(save);
+        setTexts(save);
         changeColors(save);
         setBackgroundImage(save);
         showAutomaticText(save.getDarkMode()[2]);
         return view;
+    }
+
+    private void setTexts(JulyTimersave save) {
+        setButtonText(save);
+        setTextViewTexts(save);
+    }
+
+    private void setTextViewTexts(JulyTimersave save) {
+        TextView darkModeStartTimeLabel = view.findViewById(R.id.darkModeStartTimeLabel);
+        TextView darkModeEndTimeLabel = view.findViewById(R.id.darkModeEndTimeLabel);
+
+        darkModeStartTimeLabel.setText(StringCompiler.getStartDarkModeText(save, view.getContext()));
+        darkModeEndTimeLabel.setText(StringCompiler.getEndDarkModeText(save, view.getContext()));
     }
 
     private void removeBackArrow() {
@@ -54,6 +68,40 @@ public class customizeColorScheme extends Fragment {
         }
     }
 
+    // Füge dies innerhalb deiner Aktivität oder deines Fragments hinzu, wo du den Code oben verwendest
+    TimePickerDialog.OnTimeSetListener timeSetListenerStart = (view, hourOfDay, minute) -> {
+        JulyTimersave save = saveExec.load(view.getContext());
+        Integer[] m = save.getDarkMode();
+        m[0] = hourOfDay;
+        save.setDarkMode(m);
+        saveExec.save(save, view.getContext());
+        setTextViewTexts(save);
+        changeColors(save);
+    };
+
+    // Füge dies innerhalb deiner Aktivität oder deines Fragments hinzu, wo du den Code oben verwendest
+    TimePickerDialog.OnTimeSetListener timeSetListenerEnd = (view, hourOfDay, minute) -> {
+        JulyTimersave save = saveExec.load(view.getContext());
+        Integer[] m = save.getDarkMode();
+        m[1] = hourOfDay;
+        save.setDarkMode(m);
+        saveExec.save(save, view.getContext());
+        setTextViewTexts(save);
+        changeColors(save);
+    };
+
+    // Funktion, um den TimePickerDialog zu zeigen
+    private void showTimePickerDialog(TimePickerDialog.OnTimeSetListener listener, int startHour) {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(
+                requireContext(),
+                listener,
+                startHour, // Stunde
+                0, // Minute (Ignoriert, da wir nur Stunden anzeigen)
+                true // 24-Stunden-Format verwenden
+        );
+        timePickerDialog.show();
+    }
+
     private void setButtonListeners() {
         JulyTimersave save = saveExec.load(view.getContext());
 
@@ -65,6 +113,18 @@ public class customizeColorScheme extends Fragment {
         Button btChangeBrightButton = view.findViewById(R.id.brightModeButtonColorButton);
         Button btChangeBrightText = view.findViewById(R.id.brightModeTextColorButton);
         Button btChangeBrightBackground = view.findViewById(R.id.brightModeBackgroundColorButton);
+        TextView darkModeStartTimeLabel = view.findViewById(R.id.darkModeStartTimeLabel);
+        TextView darkModeEndTimeLabel = view.findViewById(R.id.darkModeEndTimeLabel);
+
+        darkModeStartTimeLabel.setOnClickListener(v -> {
+            // Öffne den TimePickerDialog für den Startzeitpunkt
+            showTimePickerDialog(timeSetListenerStart, save.getDarkMode()[0]);
+        });
+
+        darkModeEndTimeLabel.setOnClickListener(v -> {
+            // Öffne den TimePickerDialog für den Endzeitpunkt
+            showTimePickerDialog(timeSetListenerEnd, save.getDarkMode()[1]);
+        });
 
         int darkButtonColor = Color.parseColor(save.getDarkColorScheme()[0]);
         int darkTextColor = Color.parseColor(save.getDarkColorScheme()[1]);
@@ -187,10 +247,14 @@ public class customizeColorScheme extends Fragment {
     }
 
     private void showAutomaticText(int mode) {
+        TextView darkModeStartTimeLabel = view.findViewById(R.id.darkModeStartTimeLabel);
+        TextView darkModeEndTimeLabel = view.findViewById(R.id.darkModeEndTimeLabel);
         if(mode == 0) {
-            //TODO: Show the texts
+            darkModeStartTimeLabel.setVisibility(View.VISIBLE);
+            darkModeEndTimeLabel.setVisibility(View.VISIBLE);
         } else {
-            //TODO: Hide the texts
+            darkModeStartTimeLabel.setVisibility(View.INVISIBLE);
+            darkModeEndTimeLabel.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -241,6 +305,8 @@ public class customizeColorScheme extends Fragment {
 
         TextView brightModeLabel = view.findViewById(R.id.brightModeButtonsText);
         TextView darkModeLabel = view.findViewById(R.id.darkModeButtonsText);
+        TextView darkModeStartTimeLabel = view.findViewById(R.id.darkModeStartTimeLabel);
+        TextView darkModeEndTimeLabel = view.findViewById(R.id.darkModeEndTimeLabel);
 
         View layout = view.findViewById(R.id.customizeColorSchemeLayout);
 
@@ -251,8 +317,12 @@ public class customizeColorScheme extends Fragment {
 
         brightModeLabel.setBackgroundColor(buttonColor);
         darkModeLabel.setBackgroundColor(buttonColor);
+        darkModeStartTimeLabel.setBackgroundColor(buttonColor);
+        darkModeEndTimeLabel.setBackgroundColor(buttonColor);
         brightModeLabel.setTextColor(textColor);
         darkModeLabel.setTextColor(textColor);
+        darkModeStartTimeLabel.setTextColor(textColor);
+        darkModeEndTimeLabel.setTextColor(textColor);
 
         layout.setBackgroundColor(backgroundColor);
     }
