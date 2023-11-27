@@ -107,6 +107,21 @@
         app:layout_constraintTop_toBottomOf="@id/mainSettingsCustomizeDarkMode"/>
 
     <Button
+        android:id="@+id/mainSettingsChangeMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_centerInParent="true"
+        android:text="@string/showMessage"
+        app:layout_constraintTop_toBottomOf="@id/mainSettingsChangeBackground"/>
+
+    <Button
         android:id="@+id/mainSettingsShowMilestones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -119,7 +134,7 @@
         android:layout_marginEnd="15dp"
         android:layout_centerInParent="true"
         android:text="@string/showMilestones"
-        app:layout_constraintTop_toBottomOf="@id/mainSettingsChangeBackground"/>
+        app:layout_constraintTop_toBottomOf="@id/mainSettingsChangeMessage"/>
 
     <Button
         android:id="@+id/mainSettingsReset"

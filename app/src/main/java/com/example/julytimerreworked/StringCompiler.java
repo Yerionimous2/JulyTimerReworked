@@ -333,4 +333,20 @@ public class StringCompiler {
         result += " " + save.getDarkMode()[1] + " " + context.getString(R.string.oClock);
         return result;
     }
+
+    public static String getMainSettingsMessageText(JulyTimersave save, Context context) {
+        String result = context.getString(R.string.showMessage);
+        if(save.isGetMessage()) {
+            result += " " + context.getString(R.string.yes);
+        } else {
+            result += " " + context.getString(R.string.no);
+        }
+        return result;
+    }
+
+    public static String replacelast(String content, char c) {
+        content = content.substring(0, content.length() - 1);
+        content += c;
+        return content;
+    }
 }

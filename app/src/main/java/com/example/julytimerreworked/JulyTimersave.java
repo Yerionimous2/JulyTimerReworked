@@ -16,6 +16,7 @@ public class JulyTimersave {
     private boolean[] show;
     private Bitmap backgroundImage;
     private Integer[] darkMode;
+    private boolean getMessage;
 
     /**
      * Konstruktor für die Initialisierung der JulyTimersave-Instanz.
@@ -28,7 +29,7 @@ public class JulyTimersave {
      * @param bi Das Hintergrundbild des Timers als Bitmap.
      * @param dm Der Dunkelmodus als Integer-Array.
      */
-    public JulyTimersave(String s, String e, String[] bcs, String[] dcs, boolean[] show, Bitmap bi, Integer[] dm) {
+    public JulyTimersave(String s, String e, String[] bcs, String[] dcs, boolean[] show, Bitmap bi, Integer[] dm, boolean gm) {
         this.startTime = s;
         this.endTime = e;
         this.brightColorScheme = bcs;
@@ -36,6 +37,7 @@ public class JulyTimersave {
         this.show = show;
         this.backgroundImage = bi;
         this.darkMode = dm;
+        this.getMessage = gm;
     }
 
     /**
@@ -63,6 +65,9 @@ public class JulyTimersave {
         if(backgroundImage == null) {
             result+= "Das Hintergrundbild ist nicht gesetzt\n";
         } else result+= "Das Hintergrundbild ist gesetzt\n";
+        if(this.getMessage) {
+            result+= "Nachrichten werden gesendet \n";
+        }
         return result;
     }
 
@@ -70,6 +75,12 @@ public class JulyTimersave {
         return this.darkMode;
     }
     public void setDarkMode(Integer[] darkMode) {this.darkMode = darkMode;}
+
+    public void setGetMessage(boolean gm) {this.getMessage = gm;}
+
+    public boolean isGetMessage() {
+        return getMessage;
+    }
 
     // Getter and Setter for startTime
     public String getStartTime() {

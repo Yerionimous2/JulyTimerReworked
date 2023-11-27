@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         Context context = this;
         save = saveExec.load(context);
         initialiseTextViewTexts();
-        updateTextViewTexts();
+        updateTextNMessage();
         changeColors();
         initialiseTimer();
         initialiseButtonListener();
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         save = saveExec.load(this);
         initialiseTextViewTexts();
-        updateTextViewTexts();
+        updateTextNMessage();
         changeColors();
     }
 
@@ -64,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public void initialiseTimer() {
         Handler handler = new Handler();
-        int milliDelay = 50;
+        int milliDelay = 100;
         Runnable myRunnable = new Runnable() {
             @Override
             public void run() {
-                updateTextViewTexts();
+                updateTextNMessage();
                 // Aktivität erneut starten
                 handler.postDelayed(this, milliDelay);
             }
@@ -162,14 +162,23 @@ public class MainActivity extends AppCompatActivity {
         label3.setText(StringCompiler.getTillSeenString(save.getShow(), this));
     }
 
+    private void updateTextNMessage() {
+        xyzSet times = new xyzSet(save);
+        updateTextViewTexts(times);
+        if(save.isGetMessage()) {
+            messageHandler.sendMessage(times, this);
+        } else {
+            messageHandler.removeMessage(this);
+        }
+    }
+
     /**
      * Aktualisiert die TextView-Texte basierend auf den Timer-Zeitdaten.
      */
-    public void updateTextViewTexts() {
+    public void updateTextViewTexts(xyzSet times) {
         TextView label2 = findViewById(R.id.lb2);
         TextView label4 = findViewById(R.id.lb4);
         TextView label6 = findViewById(R.id.lb6);
-        xyzSet times = new xyzSet(save);
         label2.setText(StringCompiler.getTimeString(save.getShow(), times.getElapsed(), this));
         label4.setText(StringCompiler.getTimeString(save.getShow(), times.getRemaining(), this));
         label6.setText(StringCompiler.getPercentString(times.getPercent()));

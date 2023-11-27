@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -48,8 +49,14 @@ public class FirstFragment extends Fragment {
         setButtonListeners();
         setBackgroundImage(save);
         changeColors(save);
+        setMessageButtonText(save);
 
         return view;
+    }
+
+    private void setMessageButtonText(JulyTimersave save) {
+        Button btMessage = view.findViewById(R.id.mainSettingsChangeMessage);
+        btMessage.setText(StringCompiler.getMainSettingsMessageText(save, view.getContext()));
     }
 
     /**
@@ -89,6 +96,7 @@ public class FirstFragment extends Fragment {
         Button btChangeDates = view.findViewById(R.id.mainSettingsChangeDates);
         Button btCustomizeDarkMode = view.findViewById(R.id.mainSettingsCustomizeDarkMode);
         Button btChangeBackground = view.findViewById(R.id.mainSettingsChangeBackground);
+        Button btMessage = view.findViewById(R.id.mainSettingsChangeMessage);
         Button btShowMileStones = view.findViewById(R.id.mainSettingsShowMilestones);
         Button btReset = view.findViewById(R.id.mainSettingsReset);
 
@@ -99,6 +107,7 @@ public class FirstFragment extends Fragment {
         btChangeDates.setBackgroundColor(buttonColor);
         btCustomizeDarkMode.setBackgroundColor(buttonColor);
         btChangeBackground.setBackgroundColor(buttonColor);
+        btMessage.setBackgroundColor(buttonColor);
         btShowMileStones.setBackgroundColor(buttonColor);
         btReset.setBackgroundColor(buttonColor);
 
@@ -107,6 +116,7 @@ public class FirstFragment extends Fragment {
         btChangeDates.setTextColor(textColor);
         btCustomizeDarkMode.setTextColor(textColor);
         btChangeBackground.setTextColor(textColor);
+        btMessage.setTextColor(textColor);
         btShowMileStones.setTextColor(textColor);
         btReset.setTextColor(textColor);
 
@@ -122,6 +132,7 @@ public class FirstFragment extends Fragment {
         Button btChangeDates = view.findViewById(R.id.mainSettingsChangeDates);
         Button btPickBackgroundImage = view.findViewById(R.id.mainSettingsChangeBackground);
         Button btReset = view.findViewById(R.id.mainSettingsReset);
+        Button btMessage = view.findViewById(R.id.mainSettingsChangeMessage);
         Button btShowMileStones = view.findViewById(R.id.mainSettingsShowMilestones);
         Button btCustomizeColorScheme = view.findViewById(R.id.mainSettingsCustomizeDarkMode);
 
@@ -130,6 +141,13 @@ public class FirstFragment extends Fragment {
         btShowMileStones.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_mileStones));
         btCustomizeColorScheme.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_FirstFragment_to_customizeColorScheme));
         btBack.setOnClickListener((View) -> requireActivity().onBackPressed());
+
+        btMessage.setOnClickListener((View) -> {
+            JulyTimersave save = saveExec.load(view.getContext());
+            save.setGetMessage(!save.isGetMessage());
+            saveExec.save(save, view.getContext());
+            btMessage.setText(StringCompiler.getMainSettingsMessageText(save, view.getContext()));
+        });
 
         btReset.setOnClickListener((View) -> {
             JulyTimersave save = saveExec.reset(view.getContext());

@@ -58,6 +58,7 @@ public class saveExec {
         } else {
             editor.putString("BackgroundImage", "kein BG gesetzt.");
         }
+        editor.putBoolean("getMessage", toSave.isGetMessage());
 
         editor.apply();
     }
@@ -103,7 +104,10 @@ public class saveExec {
         darkMode[1] = sharedPref.getInt("darkMode[1]", 7);
         darkMode[2] = sharedPref.getInt("darkMode[2]", 0);
 
-        return new JulyTimersave(startTime, endTime, brightColorScheme, darkColorScheme, show, BackgroundImageBitmap, darkMode);
+        boolean getMessage;
+        getMessage = sharedPref.getBoolean("getMessage", true);
+
+        return new JulyTimersave(startTime, endTime, brightColorScheme, darkColorScheme, show, BackgroundImageBitmap, darkMode, getMessage);
     }
 
     /**
@@ -137,7 +141,7 @@ public class saveExec {
         darkMode[1] = 7;
         darkMode[2] = 0;
 
-        JulyTimersave save = new JulyTimersave(startTime, endTime, brightColorScheme, darkColorScheme, show, null, darkMode);
+        JulyTimersave save = new JulyTimersave(startTime, endTime, brightColorScheme, darkColorScheme, show, null, darkMode, true);
         save(save, context);
         return save;
     }

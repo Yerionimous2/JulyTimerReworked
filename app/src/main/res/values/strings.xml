@@ -18,6 +18,9 @@
     <string name="changeBackground">Hintergrundbild ändern</string>
     <string name="showMilestones">Meilensteine anzeigen</string>
     <string name="reset">zurücksetzen</string>
+    <string name="showMessage">Nachricht anzeigen:</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="settings_main_label">Einstellungen</string>
