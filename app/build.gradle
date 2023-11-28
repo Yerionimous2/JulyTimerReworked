@@ -10,8 +10,8 @@ android {
         applicationId "com.example.julytimerreworked"
         minSdk 24
         targetSdk 33
-        versionCode 17
-        versionName "2.6.3"
+        versionCode 18
+        versionName "2.6.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,9 +34,12 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
+    //noinspection GradleDependency
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-fragment:2.4.1'
+    //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-ui:2.4.1'
     implementation 'com.github.yukuku:ambilwarna:2.0.1'
     testImplementation 'junit:junit:4.13.2'

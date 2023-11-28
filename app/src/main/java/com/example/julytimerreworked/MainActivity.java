@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     //TODO: doku
     private void initialiseButtonListener() {
         Button btSettings = findViewById(R.id.BtSettings);
-        Context context = this;
         btSettings.setOnClickListener((View view) -> {
             saveExec.save(save, this);
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void initialiseTimer() {
         Handler handler = new Handler();
-        int milliDelay = 100;
+        int milliDelay = 20;
         Runnable myRunnable = new Runnable() {
             @Override
             public void run() {
@@ -184,10 +183,31 @@ public class MainActivity extends AppCompatActivity {
      */
     public void updateTextViewTexts(xyzSet times) {
         TextView label2 = findViewById(R.id.lb2);
+        TextView label3 = findViewById(R.id.lb3);
         TextView label4 = findViewById(R.id.lb4);
         TextView label6 = findViewById(R.id.lb6);
-        label2.setText(StringCompiler.getTimeString(save.getShow(), times.getElapsed(), this));
-        label4.setText(StringCompiler.getTimeString(save.getShow(), times.getRemaining(), this));
-        label6.setText(StringCompiler.getPercentString(times.getPercent()));
+        if(times.getPercent() > 0) {
+            label2.setText(StringCompiler.getTimeString(save.getShow(), times.getElapsed(), this));
+            label3.setText(StringCompiler.getTillSeenString(save.getShow(), this));
+            label4.setText(StringCompiler.getTimeString(save.getShow(), times.getRemaining(), this));
+            label6.setText(StringCompiler.getPercentString(times.getPercent()));
+            hideShowLabels(1);
+        } else {
+            label3.setText(StringCompiler.getTillGoString(save.getShow(), this));
+            label4.setText(StringCompiler.getTimeString(save.getShow(), -times.getElapsed(), this));
+            hideShowLabels(0);
+        }
+    }
+
+    private void hideShowLabels(int i) {
+        View layout2 = findViewById(R.id.layout2);
+        View layout3 = findViewById(R.id.layout3);
+        if(i == 0) {
+            layout2.setVisibility(View.INVISIBLE);
+            layout3.setVisibility(View.INVISIBLE);
+        } else {
+            layout2.setVisibility(View.VISIBLE);
+            layout3.setVisibility(View.VISIBLE);
+        }
     }
 }

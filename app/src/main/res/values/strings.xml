@@ -51,4 +51,5 @@
     <string name="beginDarkMode">Beginn des dunklen Modus:</string>
     <string name="endDarkMode">Beginn des hellen Modus:</string>
     <string name="oClock">Uhr</string>
+    <string name="time_till_go">, bis der Timer losgeht:</string>
 </resources>

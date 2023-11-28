@@ -22,6 +22,36 @@ public class messageHandler {
      * @param context Der Kontext, in dem die Benachrichtigung gesendet wird.
      */
     public static void sendMessage(xyzSet times, Context context) {
+        if(times.getPercent() > 0) {
+            sendMessageBiggerZero(times, context);
+        } else {
+            sendMessageZero(times, context);
+        }
+    }
+
+    private static void sendMessageZero(xyzSet times, Context context) {
+        JulyTimersave save = saveExec.load(context);
+        String title = StringCompiler.getTimeString(save.getShow(), -times.getElapsed(), context);
+        String content = StringCompiler.getTillGoString(save.getShow(), context);
+        content = StringCompiler.replacelast(content, '!');
+
+        NotificationCompat.Builder builder;
+        NotificationManager notificationManager;
+        NotificationChannel channel;
+        notificationManager = context.getSystemService(NotificationManager.class);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            channel = new NotificationChannel("35", "channel", NotificationManager.IMPORTANCE_LOW);
+            notificationManager.createNotificationChannel(channel);
+        }
+        builder = new NotificationCompat.Builder(context, "35");
+        builder.setContentText(content)
+                .setContentTitle(title)
+                .setSmallIcon(R.drawable.herz)
+                .setStyle(new NotificationCompat.BigTextStyle());
+        notificationManager.notify(1, builder.build());
+    }
+
+    private static void sendMessageBiggerZero(xyzSet times, Context context) {
         JulyTimersave save = saveExec.load(context);
         String title = StringCompiler.getTimeString(save.getShow(), times.getRemaining(), context);
         String content = StringCompiler.getTillSeenString(save.getShow(), context);

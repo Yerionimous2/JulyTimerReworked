@@ -394,4 +394,32 @@ public class StringCompiler {
         content += c;
         return content;
     }
+
+    public static String getTillGoString(boolean[] show, Context context) {
+        int enabled = 0;
+        for(boolean shows:show) {
+            if(shows) {
+                enabled += 1;
+            }
+        }
+        String result = "";
+        if(enabled >= 1) {
+            result += context.getString(R.string.time);
+        } else {
+            if(show[0]) {
+                result += "" + context.getString(R.string.days);
+            }
+            if(show[1]) {
+                result += "" + context.getString(R.string.hours);
+            }
+            if(show[2]) {
+                result += "" + context.getString(R.string.minutes);
+            }
+            if(show[3]) {
+                result += "" + context.getString(R.string.seconds);
+            }
+        }
+        result += context.getString(R.string.time_till_go);
+        return result;
+    }
 }

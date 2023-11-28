@@ -42,4 +42,5 @@
     <string name="showMessage">Show Message:</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="time_till_go">, till the timer starts:</string>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/mainLayout"
     android:layout_height="match_parent">
@@ -11,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@color/design_default_color_secondary" />
+        android:src="@color/design_default_color_secondary"
+        tools:ignore="ContentDescription" />
     <!-- android:src mit Hintergrundbild austauschen -->
 
     <!-- Knopf oben rechts -->
@@ -19,40 +21,41 @@
         android:id="@+id/BtSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:background="#00FFFFFF"
         android:text=""
         app:icon="@android:drawable/ic_menu_manage"
-        app:iconTint="#009688" />
+        app:iconTint="#009688"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <!-- Abschnitt 1 in der Mitte oben -->
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:gravity="center_horizontal"
         android:layout_centerInParent="true"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginStart="60dp"
-        android:paddingBottom="7dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:paddingTop="7dp"
-        android:orientation="vertical">
+        android:paddingBottom="7dp">
 
         <!-- Zwei Labels untereinander -->
         <TextView
             android:id="@+id/lb3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Label 3" />
+            tools:ignore="TextContrastCheck"
+            android:text="@string/back" />
 
         <TextView
             android:id="@+id/lb4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Label 4"
+            android:text="@string/back"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     </LinearLayout>
 
@@ -76,13 +79,14 @@
             android:id="@+id/lb1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Label 1" />
+            tools:ignore="TextContrastCheck"
+            android:text="@string/back" />
 
         <TextView
             android:id="@+id/lb2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Label 2"
+            android:text="@string/back"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     </LinearLayout>
 
@@ -106,13 +110,14 @@
             android:id="@+id/lb5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/percentage_done" />
+            android:text="@string/percentage_done"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/lb6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Label 6"
+            android:text="@string/back"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     </LinearLayout>
 
