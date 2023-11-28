@@ -386,13 +386,32 @@ public class StringCompiler {
      * Diese Methode ersetzt das letzte Zeichen in einem gegebenen String durch ein neues Zeichen.
      *
      * @param content Der ursprüngliche {@code String}, dessen letztes Zeichen ersetzt werden soll.
-     * @param c Das Zeichen, durch das das letzte Zeichen ersetzt werden soll.
+     * @param replaceWith Das Zeichen, durch das das letzte Zeichen ersetzt werden soll.
      * @return Ein neuer {@code String}, der das ursprüngliche String mit dem ersetzen letzten Zeichen darstellt.
      */
-    public static String replacelast(String content, char c) {
+    public static String replacelast(String content, char replaceWith) {
         content = content.substring(0, content.length() - 1);
-        content += c;
+        content += replaceWith;
         return content;
+    }
+
+    /**
+     * Diese Methode ersetzt einen Buchstaben in einem String mit einem anderen.
+     *
+     * @param content der ursprüngliche String.
+     * @param indexToReplace der Index des Buchstabens im String, der ersetzt werden soll.
+     * @param replaceWith der Buchstabe, durch den ersetzt werden soll.
+     * @return ein String, bei dem der Buchstabe ersetzt wurde.
+     */
+    public static String replace(String content, int indexToReplace, char replaceWith) {
+        // Den ursprünglichen String in einen Char-Array konvertieren
+        char[] charArray = content.toCharArray();
+
+        // Den Buchstaben an der angegebenen Position ersetzen
+        charArray[indexToReplace] = replaceWith;
+
+        // Den modifizierten Char-Array zurück in einen String konvertieren
+        return new String(charArray);
     }
 
     public static String getTillGoString(boolean[] show, Context context) {

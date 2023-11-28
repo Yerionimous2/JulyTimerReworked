@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 
 import java.io.ByteArrayOutputStream;
+import java.time.LocalDateTime;
 import java.util.Base64;
 
 /**
@@ -117,8 +118,15 @@ public class saveExec {
      * @return Ein neues `JulyTimersave`-Objekt mit den zurückgesetzten Daten.
      */
     public static JulyTimersave reset(Context context) {
-        String startTime = "2023-01-01 05:10:00.000";
-        String endTime = "2024-01-01 05:10:00.000";
+        LocalDateTime now = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            now = LocalDateTime.now();
+        }
+        String startTime = StringCompiler.getStringFromDateTime(now);
+        String endTime = StringCompiler.getStringFromDateTime(now);
+        int[] endTimeInt = StringCompiler.parseDateString(endTime);
+        endTimeInt[0]++;
+        endTime = StringCompiler.getPatternDate(endTimeInt);
 
         String[] brightColorScheme = new String[3];
         brightColorScheme[0] = "#B7C8EA";
